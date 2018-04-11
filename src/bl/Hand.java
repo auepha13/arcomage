@@ -12,11 +12,13 @@ import java.util.Random;
  *
  * @author Philipp
  */
-public class Deck {
+public class Hand {
     
     Card[] hand = new Card[5];
     
-    public Deck(){
+    
+    
+    public Hand(){
      generatehand();
     }
     
@@ -29,9 +31,22 @@ public class Deck {
         
     }
     
-    public void draw()
+    public void use(int slot)
     {
         
+        
+        hand[slot] = draw();
+        
+        
+    }
+    
+    public Card draw()
+    {
+        Card c = null;
+        
+        c = generatecard();
+        
+        return c;
     }
     
     public Card generatecard()
@@ -41,7 +56,9 @@ public class Deck {
         
         Random rand = new Random();
         
-        //rand.nextInt(10 - 0 +1); og ist anzahl der verschiedenen karten
+        rand.nextInt(10 - 0 +1); //og ist anzahl der verschiedenen karten aus db auslesen
+        
+        
         
         return card;
     }
