@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class Hand {
     
-    Card[] hand = new Card[5];
+    public Card[] hand = new Card[6];
     
     
     
@@ -58,6 +58,8 @@ public class Hand {
         
         rand.nextInt(10 - 0 +1); //og ist anzahl der verschiedenen karten aus db auslesen
         
+        
+        //datenbanken auslesen
         
         
         return card;

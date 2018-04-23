@@ -11,4 +11,28 @@ package beans;
  */
 public enum Types {// die 6 typen beast ...
     
+    Quarry(""),
+    Bricks(""),
+    Magic(""),
+    Gems(""),
+    Bestiary(""),
+    Beast("");
+
+    
+    String str;
+
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
+    }
+
+    private Types(String str) {
+        this.str = str;
+    }
+    
+    
+    
 }

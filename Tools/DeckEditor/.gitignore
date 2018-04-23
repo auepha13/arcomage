@@ -1,0 +1,11 @@
+### Git ignores
+
+# Directories
+GeneratedFiles/
+
+# File Types
+*.aps
+*.vcxproj
+*.filters
+*.user
+*.props
