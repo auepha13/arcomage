@@ -10,7 +10,7 @@ package database;
  * @author Stefan
  */
 public enum DB_Stmt_Type {
-    getXY("SELECT XY  FROM XY;");
+    getXY("SELECT *  FROM card INNER JOIN mod_player mod_id;");
 
     private String pStatString;
 
