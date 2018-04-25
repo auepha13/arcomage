@@ -11,10 +11,17 @@ package beans;
  * @author Philipp
  */
 public class Card {
+    
+    private int card_id;
     private String name;
     
     public Card()
     {
         
     }
+    
+
+    
+    
+    
 }
