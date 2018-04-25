@@ -5,7 +5,10 @@
  */
 package clientserver;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -17,9 +20,9 @@ import java.util.logging.Logger;
  * @author Philipp
  */
 public class ArcoClient {
-    private  InetAddress ADDR ;  
-    private Socket socket;
-    private String user="";
+    private  InetAddress ADDR = null ;  
+    private Socket socket = null;
+    private String userid="";
     
     public ArcoClient()
     {
@@ -30,11 +33,24 @@ public class ArcoClient {
             Logger.getLogger(ArcoClient.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            socket = new Socket(ADDR, 1337);
+            socket = new Socket(ADDR, 9999);
         } catch (IOException ex) {
             Logger.getLogger(ArcoClient.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+
     }
+            private void sendRequest(Object request) throws IOException, ClassNotFoundException {
+     
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            oos.writeObject(request); //an server schicken und lesen
+            
+            
+            ois.readObject().toString();
+            oos.close();
+            ois.close();
+            socket.close();
+    
+             }
 }
