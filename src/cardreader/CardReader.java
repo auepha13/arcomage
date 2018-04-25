@@ -24,14 +24,18 @@ public class CardReader {
     public static void main(String argv[]) throws SAXException, IOException {
 
         try {
-            File file = new File("user.dir" + File.separator + "src"+ File.separator + "deck.xml");
+            File file = new File(System.getProperty("user.dir") + File.separator + "res"+ File.separator + "deck.xml");
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(file);
             
             
-            String usr = document.getElementsByTagName("user").item(0).getTextContent();
-            String pwd = document.getElementsByTagName("password").item(0).getTextContent();
+            String name = document.getElementsByTagName("Nme").item(0).getTextContent();
+          //  String pwd = document.getElementsByTagName("password").item(0).getTextContent();
+            
+            
+            System.out.println(name);
+            
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(CardReader.class.getName()).log(Level.SEVERE, null, ex);
         }
