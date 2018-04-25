@@ -25,9 +25,10 @@ public class Card {
     private int changes_player_gems;
     private String description;
 
-    public Card(int card_id, String name, int type, int requirement, int damage_self, int mod_enemy_bestiary, int mod_enemy_quarry, int mod_enemy_magic, int mod_player_bestiary, int mod_player_quarry, int mod_player_magic, int changes_enemy_beats, int changes_enemy_bricks, int changes_enemy_gems, int changes_player_beats, int changes_player_bricks, int changes_player_gems, String description) {
+    public Card(int card_id, String name, String bild_pfad, int type, int requirement, int damage_self, int mod_enemy_bestiary, int mod_enemy_quarry, int mod_enemy_magic, int mod_player_bestiary, int mod_player_quarry, int mod_player_magic, int changes_enemy_beats, int changes_enemy_bricks, int changes_enemy_gems, int changes_player_beats, int changes_player_bricks, int changes_player_gems, String description) {
         this.card_id = card_id;
         this.name = name;
+        this.bild_pfad = bild_pfad;
         this.type = type;
         this.requirement = requirement;
         this.damage_self = damage_self;
@@ -60,6 +61,14 @@ public class Card {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBild_pfad() {
+        return bild_pfad;
+    }
+
+    public void setBild_pfad(String bild_pfad) {
+        this.bild_pfad = bild_pfad;
     }
 
     public int getType() {
@@ -190,4 +199,5 @@ public class Card {
         this.description = description;
     }
 
+    
 }
