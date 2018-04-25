@@ -1,9 +1,13 @@
 package beans;
 
+
+//XML stuff with jaxb sooon 
+
 public class Card {
 
     private int card_id;
     private String name;
+    private String bild_pfad;
     private int type;
     private int requirement;
     private int damage_self;
