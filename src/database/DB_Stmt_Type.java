@@ -10,16 +10,21 @@ package database;
  * @author Stefan
  */
 public enum DB_Stmt_Type {
-    getXY("SELECT *  FROM card INNER JOIN mod_player mod_id;");
+    GetAllCards("SELECT * FROM card");
+  
+  
+  private String pStatString;
 
-    private String pStatString;
+  private DB_Stmt_Type(String pStat)
+  {
+    this.pStatString = pStat;
+  }
 
-    private DB_Stmt_Type(String pStat) {
-        this.pStatString = pStat;
-    }
-
-    public String getpStatString() {
-        return pStatString;
-    }
+  public String getpStatString()
+  {
+    return pStatString;
+  }
+  
+  
 
 }
