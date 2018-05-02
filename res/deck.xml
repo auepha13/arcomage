@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Card id="1">
+    <Name>Brick Shortage</Name>
+    <Type value="0" />
+    <Picture value="1.png" />
+    <Requirements value="0" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="-8" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="-8" gems="0" tower="0" wall="0" />
+    <Description>All Players lose 8 bricks_n</Description>
+</Card>
+<Card id="2">
+    <Name>Lucky Cache</Name>
+    <Type value="0" />
+    <Picture value="2.png" />
+    <Requirements value="0" />
+    <AdditionalTurn value="1" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="2" gems="2" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Bricks +2_nGems +2_nAdditional Turn_n</Description>
+</Card>
+<Card id="3">
+    <Name>Friendly Terrain</Name>
+    <Type value="0" />
+    <Picture value="3.png" />
+    <Requirements value="1" />
+    <AdditionalTurn value="1" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="1" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +1_nAdditional Turn_n</Description>
+</Card>
+<Card id="4">
+    <Name>Miners</Name>
+    <Type value="0" />
+    <Picture value="4.png" />
+    <Requirements value="3" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="1" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Quarry +1_n</Description>
+</Card>
+<Card id="5">
+    <Name>Mother Lode</Name>
+    <Type value="0" />
+    <Picture value="5.png" />
+    <Requirements value="4" />
+    <Script value="5_mother_lode.lua" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>If own Quarry smaller _nthan the enemies',_nQuarry +2 else _nQuarry +1_n</Description>
+</Card>
+<Card id="6">
+    <Name>Dwarven Miners</Name>
+    <Type value="0" />
+    <Picture value="6.png" />
+    <Requirements value="7" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="1" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="4" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +4_nQuarry +1_n</Description>
+</Card>
+<Card id="7">
+    <Name>Work Overtime</Name>
+    <Type value="0" />
+    <Picture value="7.png" />
+    <Requirements value="2" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="-6" tower="0" wall="5" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +5_nGems -6_n</Description>
+</Card>
+<Card id="8">
+    <Name>Copping the Tech</Name>
+    <Type value="0" />
+    <Picture value="8.png" />
+    <Requirements value="5" />
+    <Script value="8_stolen_knowledge.lua" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>If own Quarry smaller_nthan the enemies',  _nQuarry = Enemy Quarry_n</Description>
+</Card>
+<Card id="9">
+    <Name>Basic Wall</Name>
+    <Type value="0" />
+    <Picture value="9.png" />
+    <Requirements value="2" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="3" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +3_n</Description>
+</Card>
+<Card id="10">
+    <Name>Sturdy Wall</Name>
+    <Type value="0" />
+    <Picture value="10.png" />
+    <Requirements value="3" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="4" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +4_n</Description>
+</Card>
+<Card id="11">
+    <Name>Innovations</Name>
+    <Type value="0" />
+    <Picture value="11.png" />
+    <Requirements value="2" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="1" gems="0" />
+    <EnemyMod beasts="0" bricks="1" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="4" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Each Player +1 Quarry_nYou gain 5 Gems_n</Description>
+</Card>
+<Card id="12">
+    <Name>Foundations</Name>
+    <Type value="0" />
+    <Picture value="12.png" />
+    <Requirements value="2" />
+    <Script value="12_fundament.lua" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>If Wall = 0, Wall +6_notherwise Wall +3_n</Description>
+</Card>
+<Card id="13">
+    <Name>Tremors</Name>
+    <Type value="0" />
+    <Picture value="13.png" />
+    <Requirements value="7" />
+    <AdditionalTurn value="1" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="-6" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="-6" />
+    <Description>Both Walls suffer 6 _ndamage._nAdditional turn._n</Description>
+</Card>
+<Card id="14">
+    <Name>Secret Room</Name>
+    <Type value="0" />
+    <Picture value="14.png" />
+    <Requirements value="8" />
+    <AdditionalTurn value="1" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="1" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Magic +1_nAdditional turn_n</Description>
+</Card>
+<Card id="15">
+    <Name>Earthquake</Name>
+    <Type value="0" />
+    <Picture value="15.png" />
+    <Requirements value="0" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="-1" gems="0" />
+    <EnemyMod beasts="0" bricks="-1" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Both players Quarry -1_n</Description>
+</Card>
+<Card id="16">
+    <Name>Big Wall</Name>
+    <Type value="0" />
+    <Picture value="16.png" />
+    <Requirements value="5" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="6" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +6_n</Description>
+</Card>
+<Card id="17">
+    <Name>Collapse!</Name>
+    <Type value="0" />
+    <Picture value="17.png" />
+    <Requirements value="4" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="-1" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Enemy Quarry -1_n</Description>
+</Card>
+<Card id="18">
+    <Name>New Equipment</Name>
+    <Type value="0" />
+    <Picture value="18.png" />
+    <Requirements value="6" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="2" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Quarry +2_n</Description>
+</Card>
+<Card id="19">
+    <Name>Strip Mine</Name>
+    <Type value="0" />
+    <Picture value="19.png" />
+    <Requirements value="0" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="-1" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="5" tower="0" wall="10" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Quarry -1_nWall +10_n5 Gems bonus_n</Description>
+</Card>
+<Card id="20">
+    <Name>Reinforced Wall</Name>
+    <Type value="0" />
+    <Picture value="20.png" />
+    <Requirements value="8" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="8" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +8_n</Description>
+</Card>
+<Card id="21">
+    <Name>Portcullis</Name>
+    <Type value="0" />
+    <Picture value="21.png" />
+    <Requirements value="9" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="1" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="5" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +5_nBeastiary +1_n</Description>
+</Card>
+<Card id="22">
+    <Name>Crystal Rocks</Name>
+    <Type value="0" />
+    <Picture value="22.png" />
+    <Requirements value="9" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="7" tower="0" wall="7" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +7_n7 Bonus Gems_n</Description>
+</Card>
+<Card id="23">
+    <Name>Harmonic Ore</Name>
+    <Type value="0" />
+    <Picture value="23.png" />
+    <Requirements value="11" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="3" wall="6" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +6_nTower +3_n</Description>
+</Card>
+<Card id="24">
+    <Name>Mondo Wall</Name>
+    <Type value="0" />
+    <Picture value="24.png" />
+    <Requirements value="13" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="12" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +12_n</Description>
+</Card>
+<Card id="25">
+    <Name>Focused Designs</Name>
+    <Type value="0" />
+    <Picture value="25.png" />
+    <Requirements value="15" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="5" wall="8" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +8_nTower +5_n</Description>
+</Card>
+<Card id="26">
+    <Name>Great Wall</Name>
+    <Type value="0" />
+    <Picture value="26.png" />
+    <Requirements value="16" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="15" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +15_n</Description>
+</Card>
+<Card id="27">
+    <Name>Rock Launcher</Name>
+    <Type value="0" />
+    <Picture value="27.png" />
+    <Requirements value="18" />
+    <Damage enemy="10" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="6" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +6_nEnemy takes 10_ndamage_n</Description>
+</Card>
+<Card id="28">
+    <Name>Dragon's Heart</Name>
+    <Type value="0" />
+    <Picture value="28.png" />
+    <Requirements value="24" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="8" wall="20" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +20_nTower +8_n</Description>
+</Card>
+<Card id="29">
+    <Name>Forced Labor</Name>
+    <Type value="0" />
+    <Picture value="29.png" />
+    <Requirements value="7" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="-5" bricks="0" gems="0" tower="0" wall="9" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +9_nLose 5 Beasts_n</Description>
+</Card>
+<Card id="30">
+    <Name>Quartz</Name>
+    <Type value="1" />
+    <Picture value="30.png" />
+    <Requirements value="1" />
+    <AdditionalTurn value="1" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="1" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +1_nAdditional Turn_n</Description>
+</Card>
+<Card id="31">
+    <Name>Smoky Quartz</Name>
+    <Type value="1" />
+    <Picture value="31.png" />
+    <Requirements value="2" />
+    <AdditionalTurn value="1" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-1" wall="0" />
+    <Description>Enemy Tower -1_nAdditional Turn_n</Description>
+</Card>
+<Card id="32">
+    <Name>Amethyst</Name>
+    <Type value="1" />
+    <Picture value="32.png" />
+    <Requirements value="2" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="3" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +3_n</Description>
+</Card>
+<Card id="33">
+    <Name>Spell Weavers</Name>
+    <Type value="1" />
+    <Picture value="33.png" />
+    <Requirements value="3" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="1" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Magic +1_n</Description>
+</Card>
+<Card id="34">
+    <Name>Prism</Name>
+    <Type value="1" />
+    <Picture value="34.png" />
+    <Requirements value="3" />
+    <AdditionalTurn value="1" />
+    <DiscardCard value="1" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Discard card_nDraw card_nAdditional turn_n</Description>
+</Card>
+<Card id="35">
+    <Name>Lodestone</Name>
+    <Type value="1" />
+    <Picture value="35.png" />
+    <Requirements value="5" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="8" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +8_nCannot discard_nthis card_n</Description>
+</Card>
+<Card id="36">
+    <Name>Solar Flare</Name>
+    <Type value="1" />
+    <Picture value="36.png" />
+    <Requirements value="4" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="2" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-2" wall="0" />
+    <Description>Tower +2_nEnemy Tower -2_n</Description>
+</Card>
+<Card id="37">
+    <Name>Crystal Matrix</Name>
+    <Type value="1" />
+    <Picture value="37.png" />
+    <Requirements value="6" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="1" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="3" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="1" wall="0" />
+    <Description>Magic +1_nTower +3_nEnemy Tower +1_n</Description>
+</Card>
+<Card id="38">
+    <Name>Gemstone Flaw</Name>
+    <Type value="1" />
+    <Picture value="38.png" />
+    <Requirements value="2" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-3" wall="0" />
+    <Description>Enemy Tower -3_n</Description>
+</Card>
+<Card id="39">
+    <Name>Ruby</Name>
+    <Type value="1" />
+    <Picture value="39.png" />
+    <Requirements value="3" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="5" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +5_n</Description>
+</Card>
+<Card id="40">
+    <Name>Gem Spear</Name>
+    <Type value="1" />
+    <Picture value="40.png" />
+    <Requirements value="4" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-5" wall="0" />
+    <Description>Enemy Tower takes_n5 damage_n</Description>
+</Card>
+<Card id="41">
+    <Name>Power Burn</Name>
+    <Type value="1" />
+    <Picture value="41.png" />
+    <Requirements value="3" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="2" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="-5" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower -5_nMagic +2_n</Description>
+</Card>
+<Card id="42">
+    <Name>Harmonic Vibe</Name>
+    <Type value="1" />
+    <Picture value="42.png" />
+    <Requirements value="7" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="1" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="3" wall="3" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Magic +1_nTower +3_nWall +3_n</Description>
+</Card>
+<Card id="43">
+    <Name>Parity</Name>
+    <Type value="1" />
+    <Picture value="43.png" />
+    <Requirements value="7" />
+    <Script value="43_balance.lua" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Adjusts magic to the _nhighest value of both_nplayers._n</Description>
+</Card>
+<Card id="44">
+    <Name>Emerald</Name>
+    <Type value="1" />
+    <Picture value="44.png" />
+    <Requirements value="6" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="8" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +8_n</Description>
+</Card>
+<Card id="45">
+    <Name>Pearl of Wisdom</Name>
+    <Type value="1" />
+    <Picture value="45.png" />
+    <Requirements value="9" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="1" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="5" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +5_nMagic +1_n</Description>
+</Card>
+<Card id="46">
+    <Name>Shatterer</Name>
+    <Type value="1" />
+    <Picture value="46.png" />
+    <Requirements value="8" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="-1" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-9" wall="0" />
+    <Description>Magic -1_nEnemy tower takes 9 _ndamage._n</Description>
+</Card>
+<Card id="47">
+    <Name>Crumblestone</Name>
+    <Type value="1" />
+    <Picture value="47.png" />
+    <Requirements value="7" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="5" wall="0" />
+    <EnemyChanges beasts="0" bricks="-6" gems="0" tower="0" wall="0" />
+    <Description>Tower +5_nEnemy loses 6 bricks._n</Description>
+</Card>
+<Card id="48">
+    <Name>Sapphire</Name>
+    <Type value="1" />
+    <Picture value="48.png" />
+    <Requirements value="10" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="11" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +11_n</Description>
+</Card>
+<Card id="49">
+    <Name>Discord</Name>
+    <Type value="1" />
+    <Picture value="49.png" />
+    <Requirements value="5" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="-1" />
+    <EnemyMod beasts="0" bricks="0" gems="-1" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="-7" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-7" wall="0" />
+    <Description>Each tower takes 7 _ndamage._nMagic -1 for each player._n</Description>
+</Card>
+<Card id="50">
+    <Name>Fire Ruby</Name>
+    <Type value="1" />
+    <Picture value="50.png" />
+    <Requirements value="13" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="6" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-4" wall="0" />
+    <Description>Tower +6_nEnemy tower takes 4 _ndamage_n</Description>
+</Card>
+<Card id="51">
+    <Name>Quarry's Help</Name>
+    <Type value="1" />
+    <Picture value="51.png" />
+    <Requirements value="4" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="-10" gems="0" tower="7" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +7_nBricks -10_n</Description>
+</Card>
+<Card id="52">
+    <Name>Crystal Shield</Name>
+    <Type value="1" />
+    <Picture value="52.png" />
+    <Requirements value="12" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="8" wall="3" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +8_nWall +3_n</Description>
+</Card>
+<Card id="53">
+    <Name>Empathy Gem</Name>
+    <Type value="1" />
+    <Picture value="53.png" />
+    <Requirements value="14" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="1" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="8" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +8_nBestiary +1_n</Description>
+</Card>
+<Card id="54">
+    <Name>Diamond</Name>
+    <Type value="1" />
+    <Picture value="54.png" />
+    <Requirements value="16" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="15" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +15_n</Description>
+</Card>
+<Card id="55">
+    <Name>Sanctuary</Name>
+    <Type value="1" />
+    <Picture value="55.png" />
+    <Requirements value="15" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="5" bricks="0" gems="0" tower="10" wall="5" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +10_nWall +5_nBeasts +5_n</Description>
+</Card>
+<Card id="56">
+    <Name>Lava Jewel</Name>
+    <Type value="1" />
+    <Picture value="56.png" />
+    <Requirements value="17" />
+    <Damage enemy="6" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="12" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +12_nEnemy takes 6 damage._n</Description>
+</Card>
+<Card id="57">
+    <Name>Dragon's Eye</Name>
+    <Type value="1" />
+    <Picture value="57.png" />
+    <Requirements value="21" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="20" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +20_n</Description>
+</Card>
+<Card id="58">
+    <Name>Crystallize</Name>
+    <Type value="1" />
+    <Picture value="58.png" />
+    <Requirements value="21" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="11" wall="-6" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +11_nWall -6_n</Description>
+</Card>
+<Card id="59">
+    <Name>Mad Cow Disease</Name>
+    <Type value="2" />
+    <Picture value="59.png" />
+    <Requirements value="0" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="-6" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="-6" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>All players lose 5 _ncreatures_n</Description>
+</Card>
+<Card id="60">
+    <Name>Faerie</Name>
+    <Type value="2" />
+    <Picture value="60.png" />
+    <Requirements value="1" />
+    <AdditionalTurn value="1" />
+    <Damage enemy="6" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Enemy takes 6 damage_nAdditional turn_n</Description>
+</Card>
+<Card id="61">
+    <Name>Moody goblins</Name>
+    <Type value="2" />
+    <Picture value="61.png" />
+    <Requirements value="1" />
+    <Damage enemy="4" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="-3" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Gems -3_nEnemy takes 4 damage_n</Description>
+</Card>
+<Card id="62">
+    <Name>Agriculture</Name>
+    <Type value="2" />
+    <Picture value="62.png" />
+    <Requirements value="3" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="1" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Bestiary +1_n</Description>
+</Card>
+<Card id="63">
+    <Name>Elven Scout</Name>
+    <Type value="2" />
+    <Picture value="63.png" />
+    <Requirements value="2" />
+    <AdditionalTurn value="1" />
+    <DiscardCard value="1" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Draw a card_nDiscard a card_nAdditional turn_n</Description>
+</Card>
+<Card id="64">
+    <Name>Goblin Mob</Name>
+    <Type value="2" />
+    <Picture value="64.png" />
+    <Requirements value="3" />
+    <Damage enemy="6" self="3" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Take 3 damage_nEnemy takes 6 damage_n</Description>
+</Card>
+<Card id="65">
+    <Name>Goblin Archers</Name>
+    <Type value="2" />
+    <Picture value="65.png" />
+    <Requirements value="4" />
+    <Damage enemy="0" self="1" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-3" wall="0" />
+    <Description>Take 1 damage_nEnemy tower takes 3 damage_n</Description>
+</Card>
+<Card id="66">
+    <Name>Shadow Faerie</Name>
+    <Type value="2" />
+    <Picture value="66.png" />
+    <Requirements value="6" />
+    <AdditionalTurn value="1" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-2" wall="0" />
+    <Description>Enemy tower -2_nAdditional turn_n</Description>
+</Card>
+<Card id="67">
+    <Name>Orc</Name>
+    <Type value="2" />
+    <Picture value="67.png" />
+    <Requirements value="3" />
+    <Damage enemy="5" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Enemy takes 5 damage_n</Description>
+</Card>
+<Card id="68">
+    <Name>Dwarves</Name>
+    <Type value="2" />
+    <Picture value="68.png" />
+    <Requirements value="5" />
+    <Damage enemy="4" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="3" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +3_nEnemy takes 4 damage_n</Description>
+</Card>
+<Card id="69">
+    <Name>Little Snakes</Name>
+    <Type value="2" />
+    <Picture value="69.png" />
+    <Requirements value="6" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="-4" wall="0" />
+    <Description>Enemy tower -4_n</Description>
+</Card>
+<Card id="70">
+    <Name>Troll Trainer</Name>
+    <Type value="2" />
+    <Picture value="70.png" />
+    <Requirements value="7" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="2" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Bestiary +2_n</Description>
+</Card>
+<Card id="71">
+    <Name>Tower Gremlin</Name>
+    <Type value="2" />
+    <Picture value="71.png" />
+    <Requirements value="8" />
+    <Damage enemy="2" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="2" wall="4" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Tower +2_nWall +4_nEnemy takes 2 damage_n</Description>
+</Card>
+<Card id="72">
+    <Name>Full Moon</Name>
+    <Type value="2" />
+    <Picture value="72.png" />
+    <Requirements value="0" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="1" bricks="0" gems="0" />
+    <EnemyMod beasts="1" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Creatures +3_n+1 Bestiary for all players_n</Description>
+</Card>
+<Card id="73">
+    <Name>Slasher</Name>
+    <Type value="2" />
+    <Picture value="73.png" />
+    <Requirements value="5" />
+    <Damage enemy="6" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Enemy takes 6 damage_n</Description>
+</Card>
+<Card id="74">
+    <Name>Ogre</Name>
+    <Type value="2" />
+    <Picture value="74.png" />
+    <Requirements value="6" />
+    <Damage enemy="6" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Enemy takes 6 damage_n</Description>
+</Card>
+<Card id="75">
+    <Name>Rabid Sheep</Name>
+    <Type value="2" />
+    <Picture value="75.png" />
+    <Requirements value="6" />
+    <Damage enemy="6" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="-3" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Enemy takes 6 damage_nEnemy Creatures -3 _n</Description>
+</Card>
+<Card id="76">
+    <Name>Imp</Name>
+    <Type value="2" />
+    <Picture value="76.png" />
+    <Requirements value="5" />
+    <Damage enemy="6" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="-5" bricks="-5" gems="-5" tower="0" wall="0" />
+    <EnemyChanges beasts="-5" bricks="-5" gems="-5" tower="0" wall="0" />
+    <Description>Enemy takes 6 damage_nBricks, Creatures and _nGems -5 for each player_n</Description>
+</Card>
+<Card id="77">
+    <Name>Spizzer</Name>
+    <Type value="2" />
+    <Picture value="77.png" />
+    <Requirements value="8" />
+    <Script value="77_raybug.lua" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>If enemy wall = 0_nenemy takes 10 damage,_nelse 6 damage_n</Description>
+</Card>
+<Card id="78">
+    <Name>Werewolf</Name>
+    <Type value="2" />
+    <Picture value="78.png" />
+    <Requirements value="9" />
+    <Damage enemy="9" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Enemy takes 9 damage_n</Description>
+</Card>
+<Card id="79">
+    <Name>Corrosion Cloud</Name>
+    <Type value="2" />
+    <Picture value="79.png" />
+    <Requirements value="11" />
+    <Script value="79_acid_cloud.lua" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>If enemy wall > 0,_nenemy takes 10 damage,_nelse 7 damage_n</Description>
+</Card>
+<Card id="80">
+    <Name>Unicorn</Name>
+    <Type value="2" />
+    <Picture value="80.png" />
+    <Requirements value="9" />
+    <Script value="80_unicorn.lua" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>If Magic > enemy Magic_nenemy takes 12 damage_nelse 7 damage_n</Description>
+</Card>
+<Card id="81">
+    <Name>Elven Archers</Name>
+    <Type value="2" />
+    <Picture value="81.png" />
+    <Requirements value="10" />
+    <Script value="81_elven_archers.lua" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>If wall > enemy wall_nenemy tower -6, else_nenemy takes 6 damage_n</Description>
+</Card>
+<Card id="82">
+    <Name>Succubus</Name>
+    <Type value="2" />
+    <Picture value="82.png" />
+    <Requirements value="14" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="-8" bricks="0" gems="0" tower="-5" wall="0" />
+    <Description>Enemy tower -5_nEnemy creatures -8_n</Description>
+</Card>
+<Card id="83">
+    <Name>Rock Stompers</Name>
+    <Type value="2" />
+    <Picture value="83.png" />
+    <Requirements value="11" />
+    <Damage enemy="8" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="-1" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Enemy takes 8 damage_nEnemy quarry -1_n</Description>
+</Card>
+<Card id="84">
+    <Name>Thief</Name>
+    <Type value="2" />
+    <Picture value="84.png" />
+    <Requirements value="12" />
+    <Damage enemy="0" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="3" gems="5" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="-5" gems="-10" tower="0" wall="0" />
+    <Description>Enemy gems -10_nEnemy bricks -5_nGems +5_nBricks +3_n</Description>
+</Card>
+<Card id="85">
+    <Name>Stone Giant</Name>
+    <Type value="2" />
+    <Picture value="85.png" />
+    <Requirements value="15" />
+    <Damage enemy="10" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="0" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="4" />
+    <EnemyChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Wall +4_nEnemy takes 10 damage_n</Description>
+</Card>
+<Card id="86">
+    <Name>Vampyre</Name>
+    <Type value="2" />
+    <Picture value="86.png" />
+    <Requirements value="17" />
+    <Damage enemy="10" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="-1" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="-5" bricks="0" gems="0" tower="0" wall="0" />
+    <Description>Enemy takes 10 damage_nEnemy bestiary -1_nEnemy creatures -5_n</Description>
+</Card>
+<Card id="87">
+    <Name>Dragon</Name>
+    <Type value="2" />
+    <Picture value="87.png" />
+    <Requirements value="25" />
+    <Damage enemy="20" self="0" />
+    <PlayerMod beasts="0" bricks="0" gems="0" />
+    <EnemyMod beasts="-1" bricks="0" gems="0" />
+    <PlayerChanges beasts="0" bricks="0" gems="0" tower="0" wall="0" />
+    <EnemyChanges beasts="0" bricks="0" gems="-10" tower="0" wall="0" />
+    <Description>Enemy takes 20 damage_nEnemy bestiary -1_nEnemy gems -10_n</Description>
+</Card>
