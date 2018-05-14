@@ -17,7 +17,9 @@ public class ArcoServer extends BasicServer
 
     @Override
     protected Object processRequest(Object request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        return "";
+        
     }
    
     public ArcoServer(int i, JTextComponent t) {

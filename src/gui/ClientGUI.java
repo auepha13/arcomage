@@ -5,6 +5,13 @@
  */
 package gui;
 
+import beans.Player;
+import clientserver.ArcoClient;
+import database.DB_Access;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Philipp
@@ -14,8 +21,20 @@ public class ClientGUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
+    
+    //private DB_Access dba = DB_Access.getInstance();
+    private ArcoClient c;
+    
     public ClientGUI() {
         initComponents();
+        
+        c= new ArcoClient();
+        createPlayer();
+    }
+    
+    public void createPlayer()
+    {
+        Player p = new Player();
     }
 
     /**
@@ -28,47 +47,119 @@ public class ClientGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        bt1 = new javax.swing.JButton();
+        bt2 = new javax.swing.JButton();
+        bt3 = new javax.swing.JButton();
+        bt4 = new javax.swing.JButton();
+        bt5 = new javax.swing.JButton();
+        bt6 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(2, 0));
 
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2);
+        jPanel2.setLayout(new java.awt.GridLayout(4, 4));
+
+        jLabel3.setText("Player");
+        jPanel2.add(jLabel3);
+        jPanel2.add(jLabel4);
+        jPanel2.add(jLabel5);
+
+        jLabel7.setText("Enemy");
+        jPanel2.add(jLabel7);
+
+        jLabel6.setText("Bricks/Quarry:");
+        jPanel2.add(jLabel6);
+        jPanel2.add(jLabel10);
+        jPanel2.add(jLabel11);
+
+        jLabel8.setText("Bricks/Quarry:");
+        jPanel2.add(jLabel8);
+
+        jLabel15.setText("Gems/Magic:");
+        jPanel2.add(jLabel15);
+
+        jLabel14.setText("Wall:");
+        jPanel2.add(jLabel14);
+
+        jLabel13.setText("Wall:");
+        jPanel2.add(jLabel13);
+
+        jLabel12.setText("Gems/Magic:");
+        jPanel2.add(jLabel12);
+
+        jLabel9.setText("Beasts/Beastiary:");
+        jPanel2.add(jLabel9);
+
+        jLabel16.setText("Tower:");
+        jPanel2.add(jLabel16);
+
+        jLabel17.setText("Tower:");
+        jPanel2.add(jLabel17);
+
+        jLabel18.setText("Beasts/Beastiary:");
+        jPanel2.add(jLabel18);
+
+        getContentPane().add(jPanel2);
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton3.setText("jButton3");
-        jPanel1.add(jButton3);
+        bt1.setText("1");
+        bt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bt1);
 
-        jButton4.setText("jButton4");
-        jPanel1.add(jButton4);
+        bt2.setText("2");
+        jPanel1.add(bt2);
 
-        jButton1.setText("jButton1");
-        jPanel1.add(jButton1);
+        bt3.setText("3");
+        jPanel1.add(bt3);
 
-        jButton2.setText("jButton2");
-        jPanel1.add(jButton2);
+        bt4.setText("4");
+        jPanel1.add(bt4);
 
-        jButton5.setText("jButton3");
-        jPanel1.add(jButton5);
+        bt5.setText("5");
+        jPanel1.add(bt5);
 
-        jButton6.setText("jButton3");
-        jPanel1.add(jButton6);
+        bt6.setText("6");
+        jPanel1.add(bt6);
 
         getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
+        try {
+            c.sendRequest("1");
+        } catch (IOException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,14 +198,30 @@ public class ClientGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton bt1;
+    private javax.swing.JButton bt2;
+    private javax.swing.JButton bt3;
+    private javax.swing.JButton bt4;
+    private javax.swing.JButton bt5;
+    private javax.swing.JButton bt6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

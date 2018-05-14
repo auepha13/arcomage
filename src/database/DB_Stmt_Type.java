@@ -10,7 +10,10 @@ package database;
  * @author Stefan
  */
 public enum DB_Stmt_Type {
-    GetAllCards("SELECT * FROM card");
+    GetAllCards("SELECT * FROM card;"),
+    GetRandomCard("SELECT * FROM card"   //inner join für alle werte.
+            + " ORDER BY RAND()"
+            + " LIMIT 1;");
   
   
   private String pStatString;

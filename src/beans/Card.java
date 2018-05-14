@@ -46,6 +46,11 @@ public class Card {
         this.changes_player_gems = changes_player_gems;
         this.description = description;
     }
+    
+    public Card(int card_id, String name) { //testen
+        this.card_id = card_id;
+        this.name = name;
+    }
 
     public int getCard_id() {
         return card_id;

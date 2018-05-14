@@ -21,7 +21,7 @@ public class ServerGUI extends javax.swing.JFrame {
      * Creates new form ServerGUI
      */
     
-    
+    private ArcoServer as;
     public ServerGUI() {
         initComponents();
         as = new ArcoServer(9999,(JTextComponent)this.jTextArea1);
@@ -29,16 +29,13 @@ public class ServerGUI extends javax.swing.JFrame {
 
     }
     
-    private ArcoServer as;
-    
-    
     public void btstart()
     {
-       
-            as.startServer();
-            
-        
+        as.startServer();
     }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

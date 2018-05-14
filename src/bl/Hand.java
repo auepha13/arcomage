@@ -6,7 +6,10 @@
 package bl;
 
 import beans.Card;
+import database.DB_Access;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,7 +18,7 @@ import java.util.Random;
 public class Hand {
     
     public Card[] hand = new Card[6];
-    
+    //private DB_Access dba = DB_Access.getInstance();
     
     
     public Hand(){
@@ -28,16 +31,11 @@ public class Hand {
             hand[i] = generatecard();
         }
         
-        
     }
     
     public void use(int slot)
     {
-        
-        
         hand[slot] = draw();
-        
-        
     }
     
     public Card draw()
@@ -54,13 +52,34 @@ public class Hand {
         Card card=null;
         
         
-        Random rand = new Random();
+        try {
+           // card = dba.getRandomCard();
+        } catch (Exception ex) {
+            Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        rand.nextInt(10 - 0 +1); //og ist anzahl der verschiedenen karten aus db auslesen
+         //Card c = new Card(1,"Testcard","/test/asdf.png",1,);
         
-        
-        //datenbanken auslesen
-        
+         
+//         private int card_id;         //von der datenbank genierierte id
+//    private String name;              //name der karte
+//    private String bild_pfad;         //pfad zum bild
+//    private int type;                 //type der karte (1 = 
+//    private int requirement;          //
+//    private int damage_self;          //
+//    private int mod_enemy_bestiary;   //verändert bestiary am gegner
+//    private int mod_enemy_quarry;     //--;--
+//    private int mod_enemy_magic;      //--;--
+//    private int mod_player_bestiary;  //--;--
+//    private int mod_player_quarry;    //--;-- beim player
+//    private int mod_player_magic;     //--;--
+//    private int changes_enemy_beats;  //gleiche mit beasts
+//    private int changes_enemy_bricks;
+//    private int changes_enemy_gems;
+//    private int changes_player_beats;
+//    private int changes_player_bricks;
+//    private int changes_player_gems;
+//    private String description;
         
         return card;
     }
