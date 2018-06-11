@@ -1,0 +1,88 @@
+Name;Type/_value;Picture/_value;Requirements/_value;Damage/_enemy;Damage/_self;PlayerMod/_beasts;PlayerMod/_bricks;PlayerMod/_gems;EnemyMod/_beasts;EnemyMod/_bricks;EnemyMod/_gems;PlayerChanges/_beasts;PlayerChanges/_bricks;PlayerChanges/_gems;PlayerChanges/_tower;PlayerChanges/_wall;EnemyChanges/_beasts;EnemyChanges/_bricks;EnemyChanges/_gems;EnemyChanges/_tower;EnemyChanges/_wall;Description;_id;AdditionalTurn/_value;Script/_value;DiscardCard/_value
+Brick Shortage;0;1.png;0;0;0;0;0;0;0;0;0;0;-8;0;0;0;0;-8;0;0;0;All Players lose 8 bricks_n;1;X;X;X
+Lucky Cache;0;2.png;0;0;0;0;0;0;0;0;0;0;2;2;0;0;0;0;0;0;0;Bricks +2_nGems +2_nAdditional Turn_n;2;1;X;X
+Friendly Terrain;0;3.png;1;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;Wall +1_nAdditional Turn_n;3;1;X;X
+Miners;0;4.png;3;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Quarry +1_n;4;X;X;X
+Mother Lode;0;5.png;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;If own Quarry smaller _nthan the enemies',_nQuarry +2 else _nQuarry +1_n;5;X;5_mother_lode.lua;X
+Dwarven Miners;0;6.png;7;0;0;0;1;0;0;0;0;0;0;0;0;4;0;0;0;0;0;Wall +4_nQuarry +1_n;6;X;X;X
+Work Overtime;0;7.png;2;0;0;0;0;0;0;0;0;0;0;-6;0;5;0;0;0;0;0;Wall +5_nGems -6_n;7;X;X;X
+Copping the Tech;0;8.png;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;If own Quarry smaller_nthan the enemies',  _nQuarry = Enemy Quarry_n;8;X;8_stolen_knowledge.lua;X
+Basic Wall;0;9.png;2;0;0;0;0;0;0;0;0;0;0;0;0;3;0;0;0;0;0;Wall +3_n;9;X;X;X
+Sturdy Wall;0;10.png;3;0;0;0;0;0;0;0;0;0;0;0;0;4;0;0;0;0;0;Wall +4_n;10;X;X;X
+Innovations;0;11.png;2;0;0;0;1;0;0;1;0;0;0;4;0;0;0;0;0;0;0;Each Player +1 Quarry_nYou gain 5 Gems_n;11;X;X;X
+Foundations;0;12.png;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;If Wall = 0, Wall +6_notherwise Wall +3_n;12;X;12_fundament.lua;X
+Tremors;0;13.png;7;0;0;0;0;0;0;0;0;0;0;0;0;-6;0;0;0;0;-6;Both Walls suffer 6 _ndamage._nAdditional turn._n;13;1;X;X
+Secret Room;0;14.png;8;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;Magic +1_nAdditional turn_n;14;1;X;X
+Earthquake;0;15.png;0;0;0;0;-1;0;0;-1;0;0;0;0;0;0;0;0;0;0;0;Both players Quarry -1_n;15;X;X;X
+Big Wall;0;16.png;5;0;0;0;0;0;0;0;0;0;0;0;0;6;0;0;0;0;0;Wall +6_n;16;X;X;X
+Collapse!;0;17.png;4;0;0;0;0;0;0;-1;0;0;0;0;0;0;0;0;0;0;0;Enemy Quarry -1_n;17;X;X;X
+New Equipment;0;18.png;6;0;0;0;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Quarry +2_n;18;X;X;X
+Strip Mine;0;19.png;0;0;0;0;-1;0;0;0;0;0;0;5;0;10;0;0;0;0;0;Quarry -1_nWall +10_n5 Gems bonus_n;19;X;X;X
+Reinforced Wall;0;20.png;8;0;0;0;0;0;0;0;0;0;0;0;0;8;0;0;0;0;0;Wall +8_n;20;X;X;X
+Portcullis;0;21.png;9;0;0;1;0;0;0;0;0;0;0;0;0;5;0;0;0;0;0;Wall +5_nBeastiary +1_n;21;X;X;X
+Crystal Rocks;0;22.png;9;0;0;0;0;0;0;0;0;0;0;7;0;7;0;0;0;0;0;Wall +7_n7 Bonus Gems_n;22;X;X;X
+Harmonic Ore;0;23.png;11;0;0;0;0;0;0;0;0;0;0;0;3;6;0;0;0;0;0;Wall +6_nTower +3_n;23;X;X;X
+Mondo Wall;0;24.png;13;0;0;0;0;0;0;0;0;0;0;0;0;12;0;0;0;0;0;Wall +12_n;24;X;X;X
+Focused Designs;0;25.png;15;0;0;0;0;0;0;0;0;0;0;0;5;8;0;0;0;0;0;Wall +8_nTower +5_n;25;X;X;X
+Great Wall;0;26.png;16;0;0;0;0;0;0;0;0;0;0;0;0;15;0;0;0;0;0;Wall +15_n;26;X;X;X
+Rock Launcher;0;27.png;18;10;0;0;0;0;0;0;0;0;0;0;0;6;0;0;0;0;0;Wall +6_nEnemy takes 10_ndamage_n;27;X;X;X
+Dragon's Heart;0;28.png;24;0;0;0;0;0;0;0;0;0;0;0;8;20;0;0;0;0;0;Wall +20_nTower +8_n;28;X;X;X
+Forced Labor;0;29.png;7;0;0;0;0;0;0;0;0;-5;0;0;0;9;0;0;0;0;0;Wall +9_nLose 5 Beasts_n;29;X;X;X
+Quartz;1;30.png;1;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;0;0;0;Tower +1_nAdditional Turn_n;30;1;X;X
+Smoky Quartz;1;31.png;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-1;0;Enemy Tower -1_nAdditional Turn_n;31;1;X;X
+Amethyst;1;32.png;2;0;0;0;0;0;0;0;0;0;0;0;3;0;0;0;0;0;0;Tower +3_n;32;X;X;X
+Spell Weavers;1;33.png;3;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;Magic +1_n;33;X;X;X
+Prism;1;34.png;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Discard card_nDraw card_nAdditional turn_n;34;1;X;1
+Lodestone;1;35.png;5;0;0;0;0;0;0;0;0;0;0;0;8;0;0;0;0;0;0;Tower +8_nCannot discard_nthis card_n;35;X;X;X
+Solar Flare;1;36.png;4;0;0;0;0;0;0;0;0;0;0;0;2;0;0;0;0;-2;0;Tower +2_nEnemy Tower -2_n;36;X;X;X
+Crystal Matrix;1;37.png;6;0;0;0;0;1;0;0;0;0;0;0;3;0;0;0;0;1;0;Magic +1_nTower +3_nEnemy Tower +1_n;37;X;X;X
+Gemstone Flaw;1;38.png;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-3;0;Enemy Tower -3_n;38;X;X;X
+Ruby;1;39.png;3;0;0;0;0;0;0;0;0;0;0;0;5;0;0;0;0;0;0;Tower +5_n;39;X;X;X
+Gem Spear;1;40.png;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-5;0;Enemy Tower takes_n5 damage_n;40;X;X;X
+Power Burn;1;41.png;3;0;0;0;0;2;0;0;0;0;0;0;-5;0;0;0;0;0;0;Tower -5_nMagic +2_n;41;X;X;X
+Harmonic Vibe;1;42.png;7;0;0;0;0;1;0;0;0;0;0;0;3;3;0;0;0;0;0;Magic +1_nTower +3_nWall +3_n;42;X;X;X
+Parity;1;43.png;7;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Adjusts magic to the _nhighest value of both_nplayers._n;43;X;43_balance.lua;X
+Emerald;1;44.png;6;0;0;0;0;0;0;0;0;0;0;0;8;0;0;0;0;0;0;Tower +8_n;44;X;X;X
+Pearl of Wisdom;1;45.png;9;0;0;0;0;1;0;0;0;0;0;0;5;0;0;0;0;0;0;Tower +5_nMagic +1_n;45;X;X;X
+Shatterer;1;46.png;8;0;0;0;0;-1;0;0;0;0;0;0;0;0;0;0;0;-9;0;Magic -1_nEnemy tower takes 9 _ndamage._n;46;X;X;X
+Crumblestone;1;47.png;7;0;0;0;0;0;0;0;0;0;0;0;5;0;0;-6;0;0;0;Tower +5_nEnemy loses 6 bricks._n;47;X;X;X
+Sapphire;1;48.png;10;0;0;0;0;0;0;0;0;0;0;0;11;0;0;0;0;0;0;Tower +11_n;48;X;X;X
+Discord;1;49.png;5;0;0;0;0;-1;0;0;-1;0;0;0;-7;0;0;0;0;-7;0;Each tower takes 7 _ndamage._nMagic -1 for each player._n;49;X;X;X
+Fire Ruby;1;50.png;13;0;0;0;0;0;0;0;0;0;0;0;6;0;0;0;0;-4;0;Tower +6_nEnemy tower takes 4 _ndamage_n;50;X;X;X
+Quarry's Help;1;51.png;4;0;0;0;0;0;0;0;0;0;-10;0;7;0;0;0;0;0;0;Tower +7_nBricks -10_n;51;X;X;X
+Crystal Shield;1;52.png;12;0;0;0;0;0;0;0;0;0;0;0;8;3;0;0;0;0;0;Tower +8_nWall +3_n;52;X;X;X
+Empathy Gem;1;53.png;14;0;0;1;0;0;0;0;0;0;0;0;8;0;0;0;0;0;0;Tower +8_nBestiary +1_n;53;X;X;X
+Diamond;1;54.png;16;0;0;0;0;0;0;0;0;0;0;0;15;0;0;0;0;0;0;Tower +15_n;54;X;X;X
+Sanctuary;1;55.png;15;0;0;0;0;0;0;0;0;5;0;0;10;5;0;0;0;0;0;Tower +10_nWall +5_nBeasts +5_n;55;X;X;X
+Lava Jewel;1;56.png;17;6;0;0;0;0;0;0;0;0;0;0;12;0;0;0;0;0;0;Tower +12_nEnemy takes 6 damage._n;56;X;X;X
+Dragon's Eye;1;57.png;21;0;0;0;0;0;0;0;0;0;0;0;20;0;0;0;0;0;0;Tower +20_n;57;X;X;X
+Crystallize;1;58.png;21;0;0;0;0;0;0;0;0;0;0;0;11;-6;0;0;0;0;0;Tower +11_nWall -6_n;58;X;X;X
+Mad Cow Disease;2;59.png;0;0;0;0;0;0;0;0;0;-6;0;0;0;0;-6;0;0;0;0;All players lose 5 _ncreatures_n;59;X;X;X
+Faerie;2;60.png;1;6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Enemy takes 6 damage_nAdditional turn_n;60;1;X;X
+Moody goblins;2;61.png;1;4;0;0;0;0;0;0;0;0;0;-3;0;0;0;0;0;0;0;Gems -3_nEnemy takes 4 damage_n;61;X;X;X
+Agriculture;2;62.png;3;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bestiary +1_n;62;X;X;X
+Elven Scout;2;63.png;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Draw a card_nDiscard a card_nAdditional turn_n;63;1;X;1
+Goblin Mob;2;64.png;3;6;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Take 3 damage_nEnemy takes 6 damage_n;64;X;X;X
+Goblin Archers;2;65.png;4;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-3;0;Take 1 damage_nEnemy tower takes 3 damage_n;65;X;X;X
+Shadow Faerie;2;66.png;6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-2;0;Enemy tower -2_nAdditional turn_n;66;1;X;X
+Orc;2;67.png;3;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Enemy takes 5 damage_n;67;X;X;X
+Dwarves;2;68.png;5;4;0;0;0;0;0;0;0;0;0;0;0;3;0;0;0;0;0;Wall +3_nEnemy takes 4 damage_n;68;X;X;X
+Little Snakes;2;69.png;6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;-4;0;Enemy tower -4_n;69;X;X;X
+Troll Trainer;2;70.png;7;0;0;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Bestiary +2_n;70;X;X;X
+Tower Gremlin;2;71.png;8;2;0;0;0;0;0;0;0;0;0;0;2;4;0;0;0;0;0;Tower +2_nWall +4_nEnemy takes 2 damage_n;71;X;X;X
+Full Moon;2;72.png;0;0;0;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;Creatures +3_n+1 Bestiary for all players_n;72;X;X;X
+Slasher;2;73.png;5;6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Enemy takes 6 damage_n;73;X;X;X
+Ogre;2;74.png;6;6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Enemy takes 6 damage_n;74;X;X;X
+Rabid Sheep;2;75.png;6;6;0;0;0;0;0;0;0;0;0;0;0;0;-3;0;0;0;0;Enemy takes 6 damage_nEnemy Creatures -3 _n;75;X;X;X
+Imp;2;76.png;5;6;0;0;0;0;0;0;0;-5;-5;-5;0;0;-5;-5;-5;0;0;Enemy takes 6 damage_nBricks, Creatures and _nGems -5 for each player_n;76;X;X;X
+Spizzer;2;77.png;8;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;If enemy wall = 0_nenemy takes 10 damage,_nelse 6 damage_n;77;X;77_raybug.lua;X
+Werewolf;2;78.png;9;9;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;Enemy takes 9 damage_n;78;X;X;X
+Corrosion Cloud;2;79.png;11;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;If enemy wall > 0,_nenemy takes 10 damage,_nelse 7 damage_n;79;X;79_acid_cloud.lua;X
+Unicorn;2;80.png;9;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;If Magic > enemy Magic_nenemy takes 12 damage_nelse 7 damage_n;80;X;80_unicorn.lua;X
+Elven Archers;2;81.png;10;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;If wall > enemy wall_nenemy tower -6, else_nenemy takes 6 damage_n;81;X;81_elven_archers.lua;X
+Succubus;2;82.png;14;0;0;0;0;0;0;0;0;0;0;0;0;0;-8;0;0;-5;0;Enemy tower -5_nEnemy creatures -8_n;82;X;X;X
+Rock Stompers;2;83.png;11;8;0;0;0;0;0;-1;0;0;0;0;0;0;0;0;0;0;0;Enemy takes 8 damage_nEnemy quarry -1_n;83;X;X;X
+Thief;2;84.png;12;0;0;0;0;0;0;0;0;0;3;5;0;0;0;-5;-10;0;0;Enemy gems -10_nEnemy bricks -5_nGems +5_nBricks +3_n;84;X;X;X
+Stone Giant;2;85.png;15;10;0;0;0;0;0;0;0;0;0;0;0;4;0;0;0;0;0;Wall +4_nEnemy takes 10 damage_n;85;X;X;X
+Vampyre;2;86.png;17;10;0;0;0;0;-1;0;0;0;0;0;0;0;-5;0;0;0;0;Enemy takes 10 damage_nEnemy bestiary -1_nEnemy creatures -5_n;86;X;X;X
+Dragon;2;87.png;25;20;0;0;0;0;-1;0;0;0;0;0;0;0;0;0;-10;0;0;Enemy takes 20 damage_nEnemy bestiary -1_nEnemy gems -10_n;87;X;X;X

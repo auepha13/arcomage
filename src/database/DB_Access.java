@@ -1,126 +1,500 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
  */
 package database;
 
 import beans.Card;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Stefan
  */
-
-
-
-//hier werden die Daten eingelesen
 public class DB_Access {
-    
-    
+
     // create DB_Access as Singleton
-   private static DB_Access theInstance = null;
-   private DB_ConnectionPool connections = DB_ConnectionPool.getInstance();
-   private DB_StatementPool statementPool = DB_StatementPool.getInstance();
+    private static DB_Access theInstance = null;
+    private DB_ConnectionPool connections = DB_ConnectionPool.getInstance();
+    private DB_StatementPool statementPool = DB_StatementPool.getInstance();
 
-  public static DB_Access getInstance()
-  {
-    if (theInstance == null)
-    {
-      theInstance = new DB_Access();
+    public static DB_Access getInstance() {
+        if (theInstance == null) {
+            theInstance = new DB_Access();
+        }
+        return theInstance;
     }
-    return theInstance;
-  }
 
-  private DB_Access()
-  {
-  }
+    private DB_Access() {
+    }
 
-  public List<Card> getAllCards() throws SQLException, Exception
-  {
-    Connection conn = connections.getConnection();
-    PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetAllCards);
-    ResultSet rs = stat.executeQuery();
-    List<Card> cardlist = new LinkedList<>();
-    while (rs.next())
-    {
-      // ToDo: fill list with Book-data from resultset
-            String name = rs.getString("name");
-            String bild_pfad = rs.getString("bild_pfad");
-            double preis = rs.getDouble("bild_pfad");
-            
-            //cardlist.add(new Card(titel, ...));
+    //braucht man nicht
+    public List<Card> getAllCards() throws SQLException, Exception {
+        Connection conn = connections.getConnection();
+        PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetAllCards);
+        ResultSet rs = stat.executeQuery();
+        List<Card> cardlist = new LinkedList<>();
+        while (rs.next()) {
+
+        }
+        connections.releaseConnection(conn);
+        return cardlist;
     }
-    connections.releaseConnection(conn);
-    return cardlist;
-  }
-  
-  public List<Card> getChange() throws SQLException, Exception
-  {
-    Connection conn = connections.getConnection();
-    PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetAllCards);
-    ResultSet rs = stat.executeQuery();
-    List<Card> cardlist = new LinkedList<>();
-    while (rs.next())
-    {
-      // ToDo: fill list with Book-data from resultset
-            String titel = rs.getString("name");
-            double preis = rs.getDouble("...");
-            //cardlist.add(new Card(titel, ...));
+
+    public void insertCard(Card card) throws SQLException, InterruptedException {
+
+        try {
+
+            Connection conn = connections.getConnection();
+            PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.InsertCard);
+
+            stat.setString(1, card.getName());
+            stat.setString(2, card.getDescription());
+            stat.setInt(3, card.getType());
+            stat.setInt(4, card.getRequirement());
+            stat.setBoolean(5, card.isAdditional_turn());
+            stat.setBoolean(6, card.isDiscardable());
+            stat.setInt(7, card.getDamage_enemy());
+            stat.setInt(8, card.getDamage_self());
+
+            stat.executeUpdate();
+
+            connections.releaseConnection(conn);
+
+        } catch (Exception ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    connections.releaseConnection(conn);
-    return cardlist;
-  }
-  
-  public Card getRandomCard() throws SQLException, Exception
-  {
-    Connection conn = connections.getConnection();
-    PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetRandomCard);
-    ResultSet rs = stat.executeQuery();
-    Card card = null;
-    while (rs.next())
-    {
-      // ToDo: fill list with Book-data from resultset
-            int card_id = rs.getInt("card_id");
-            String name = rs.getString("name");
-            String bild_pfad = rs.getString("bild_pfad");
-            int type = rs.getInt("type");
-            int requirement = rs.getInt("requirement");
-            int damage_self = rs.getInt("damage_self");
-            //int mod_enemy_bestiary 
-            
-            //card = new card(card_id...);            
+
+    public void insertVa(Card card) {
+        try {
+            insertChangesE(card);
+            insertChangesP(card);
+            insertModE(card);
+            insertModP(card);
+            insertCardPicture(card);
+        } catch (SQLException ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    connections.releaseConnection(conn);
-    return card;
-  }
-    
-    /*
-   private int card_id;
-    private String name;
-    private String bild_pfad;
-    private int type;
-    private int requirement;
-    private int damage_self;
-    private int mod_enemy_bestiary;
-    private int mod_enemy_quarry;
-    private int mod_enemy_magic;
-    private int mod_player_bestiary;
-    private int mod_player_quarry;
-    private int mod_player_magic;
-    private int changes_enemy_beats;
-    private int changes_enemy_bricks;
-    private int changes_enemy_gems;
-    private int changes_player_beats;
-    private int changes_player_bricks;
-    private int changes_player_gems;
-    private String description;
-  */
-    
+
+    public void insertChangesE(Card card) throws SQLException, InterruptedException {
+
+        try {
+
+            Connection conn = connections.getConnection();
+            PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.InsertChanges);
+            stat.setInt(1, card.getChanges_enemy_beasts());
+            stat.setInt(2, card.getChanges_enemy_bricks());
+            stat.setInt(3, card.getChanges_enemy_gems());
+            stat.setInt(4, card.getChanges_enemy_tower());
+            stat.setInt(5, card.getChanges_enemy_wall());
+            stat.executeUpdate();
+
+            connections.releaseConnection(conn);
+
+        } catch (Exception ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void insertChangesP(Card card) throws SQLException, InterruptedException {
+
+        try {
+
+            Connection conn = connections.getConnection();
+            PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.InsertChanges);
+            stat.setInt(1, card.getChanges_player_beasts());
+            stat.setInt(2, card.getChanges_player_bricks());
+            stat.setInt(3, card.getChanges_player_gems());
+            stat.setInt(4, card.getChanges_player_tower());
+            stat.setInt(5, card.getChanges_player_wall());
+            stat.executeUpdate();
+
+            connections.releaseConnection(conn);
+
+        } catch (Exception ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void deleteDoubleChanges() throws SQLException, InterruptedException {
+
+        try {
+
+            Connection conn = connections.getConnection();
+            PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.DeleteDoubleChanges);
+
+            stat.executeUpdate();
+
+            connections.releaseConnection(conn);
+
+        } catch (Exception ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void insertModE(Card card) throws SQLException, InterruptedException {
+
+        try {
+
+            Connection conn = connections.getConnection();
+            PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.InsertMod);
+            stat.setInt(1, card.getMod_enemy_bestiary());
+            stat.setInt(2, card.getMod_enemy_quarry());
+            stat.setInt(3, card.getMod_enemy_magic());
+            stat.executeUpdate();
+
+            connections.releaseConnection(conn);
+
+        } catch (Exception ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void insertModP(Card card) throws SQLException, InterruptedException {
+
+        try {
+
+            Connection conn = connections.getConnection();
+            PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.InsertMod);
+            stat.setInt(1, card.getMod_player_bestiary());
+            stat.setInt(2, card.getMod_player_quarry());
+            stat.setInt(3, card.getMod_player_magic());
+            stat.executeUpdate();
+
+            connections.releaseConnection(conn);
+
+        } catch (Exception ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void insertCardPicture(Card card) throws SQLException, InterruptedException {
+
+        try {
+
+            Connection conn = connections.getConnection();
+            PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.SetPicture);
+            String pfad = System.getProperty("user.dir") + File.separator + "res" + File.separator + "images" + File.separator + card.getCard_id() + ".png";
+
+            // System.out.println(pfad);
+            File imgfile = new File(pfad);
+            FileInputStream fin = new FileInputStream(imgfile);
+
+            stat.setBinaryStream(1, (InputStream) fin, (int) imgfile.length());
+            stat.setInt(2, card.getCard_id());
+
+            stat.executeUpdate();
+            System.out.println("Successfully inserted the file into the database!");
+            connections.releaseConnection(conn);
+
+        } catch (Exception ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void CardUpdate(Card card) throws SQLException, InterruptedException {
+
+        try {
+
+            int modPid = 0;
+            int modEid = 0;
+            int changesPid = 0;
+            int changesEid = 0;
+            Connection conn = connections.getConnection();
+            PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetModID);
+            stat.setInt(1, card.getMod_player_bestiary());
+            stat.setInt(2, card.getMod_player_quarry());
+            stat.setInt(3, card.getMod_player_magic());
+            ResultSet rs = stat.executeQuery();
+
+            // System.out.println(card.getMod_player_bestiary() + " " + card.getMod_player_quarry() + " " + card.getMod_player_magic());
+            while (rs.next()) {
+                modPid = rs.getInt(1);
+                System.out.print(" " + modPid);
+
+            }
+
+            stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetModID);
+            stat.setInt(1, card.getMod_enemy_bestiary());
+            stat.setInt(2, card.getMod_enemy_quarry());
+            stat.setInt(3, card.getMod_enemy_magic());
+            rs = stat.executeQuery();
+
+            while (rs.next()) {
+                modEid = rs.getInt(1);
+                System.out.print(" " + modEid);
+
+            }
+
+            stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetChangesID);
+            stat.setInt(1, card.getChanges_enemy_beasts());
+            stat.setInt(2, card.getChanges_enemy_bricks());
+            stat.setInt(3, card.getChanges_enemy_gems());
+            stat.setInt(4, card.getChanges_enemy_tower());
+            stat.setInt(5, card.getChanges_enemy_wall());
+            rs = stat.executeQuery();
+
+            while (rs.next()) {
+                changesEid = rs.getInt(1);
+                System.out.print(" " + changesEid);
+
+            }
+
+            stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetChangesID);
+            stat.setInt(1, card.getChanges_player_beasts());
+            stat.setInt(2, card.getChanges_player_bricks());
+            stat.setInt(3, card.getChanges_player_gems());
+            stat.setInt(4, card.getChanges_player_tower());
+            stat.setInt(5, card.getChanges_player_wall());
+            rs = stat.executeQuery();
+
+            while (rs.next()) {
+                changesPid = rs.getInt(1);
+                System.out.print(" " + changesPid);
+
+            }
+
+            stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.CardUpdate);
+            stat.setInt(1, modEid);
+            stat.setInt(2, modPid);
+            stat.setInt(3, changesEid);
+            stat.setInt(4, changesPid);
+            stat.setInt(5, card.getCard_id());
+
+            stat.executeUpdate();
+
+            //"UPDATE card SET mod_enemy = ?, mod_player = ?, ""changes_enemy = ?, changes_player = ?\WHERE card_id = ?"),
+            System.out.println(" next card");
+
+            //  modPid = rs.getInt(1);
+            // System.out.println(modPid);
+//            PreparedStatement stat2 = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetModID);
+//            rs = stat.executeQuery();
+//            changesPid = rs.getInt(1);
+//
+//            PreparedStatement stat3 = statementPool.getPrepStatement(conn, DB_Stmt_Type.CardUpdate);
+            connections.releaseConnection(conn);
+
+        } catch (Exception ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public Card getRandomCard() throws SQLException, Exception {
+
+        int cardcount = 0;
+
+        Connection conn = connections.getConnection();
+        PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetCardCount);
+        ResultSet rs = stat.executeQuery();
+        Card card = null;
+
+        while (rs.next()) {
+            cardcount = rs.getInt(1);
+        }
+        int rnd = ThreadLocalRandom.current().nextInt(1, cardcount + 1);
+        System.out.println(rnd);
+
+        card = getCard(rnd);
+
+        connections.releaseConnection(conn);
+        return card;
+
+    }
+
+    public Card getCard(int card_id) throws SQLException, Exception {
+
+        Card card = null;
+        Connection conn = connections.getConnection();
+        PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetCardCount);
+
+        stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetCard);
+        stat.setInt(1, card_id);
+        ResultSet rs = stat.executeQuery();
+
+        rs = stat.executeQuery();
+
+        while (rs.next()) {
+
+            String name = rs.getString(2);
+            String description = rs.getString(3);
+            File picture = null;
+            int type = rs.getInt(5);
+            int requirement = rs.getInt(6);
+            boolean additional_turn = rs.getBoolean(7);
+            boolean discardable = rs.getBoolean(8);
+            int damage_enemy = rs.getInt(9);
+            int damage_self = rs.getInt(10);
+            int mod_enemy_bestiary = rs.getInt(16);
+            int mod_enemy_quarry = rs.getInt(17);
+            int mod_enemy_magic = rs.getInt(18);
+            int mod_player_bestiary = rs.getInt(20);
+            int mod_player_quarry = rs.getInt(21);
+            int mod_player_magic = rs.getInt(22);
+            int changes_enemy_beasts = rs.getInt(24);
+            int changes_enemy_bricks = rs.getInt(25);
+            int changes_enemy_gems = rs.getInt(26);
+            int changes_enemy_tower = rs.getInt(27);
+            int changes_enemy_wall = rs.getInt(28);
+            int changes_player_beast = rs.getInt(30);
+            int changes_player_bricks = rs.getInt(31);
+            int changes_player_gems = rs.getInt(32);
+            int changes_player_tower = rs.getInt(33);
+            int changes_player_wall = rs.getInt(33);
+
+            System.out.println(rs.getString(1));
+            card = new Card(card_id, name, description, picture, type, requirement, additional_turn, discardable, damage_enemy, damage_self, mod_enemy_bestiary, mod_enemy_quarry, mod_enemy_magic, mod_player_bestiary, mod_player_quarry, mod_player_magic, changes_enemy_beasts, changes_enemy_bricks, changes_enemy_gems, changes_enemy_tower, changes_enemy_wall, changes_player_beast, changes_player_bricks, changes_player_gems, changes_player_tower, changes_player_wall);
+        }
+
+        connections.releaseConnection(conn);
+        return card;
+
+    }
+
+    //random card obejekt 
+    //
+    public static void main(String[] args) {
+        try {
+            DB_Access access = DB_Access.getInstance();
+
+            // Card card = access.getCard(1);
+            Card card = access.getRandomCard();
+            System.out.println(card.toString());
+        } catch (Exception ex) {
+            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
+
+/*
+SELECT *
+FROM card
+ORDER BY card_id DESC;
+
+UPDATE card
+SET mod_enemy = 1, mod_player = 1, changes_enemy = 1, changes_player = 1
+WHERE card_id = 20000
+
+SELECT changes_id
+FROM changes
+WHERE beasts = 0 AND bricks = 0 AND gems = 0;
+
+
+
+
+
+SELECT *
+FROM mod;
+
+SELECT *
+FROM changes
+
+SELECT *
+FROM card c INNER JOIN changes che ON c.changes_enemy = che.changes_id
+
+SELECT changes_id
+FROM changes
+WHERE beasts = 0 AND bricks = 0 AND gems = 0;
+
+
+
+DELETE FROM changes
+WHERE  changes_id NOT IN (SELECT MAX(changes_id)
+                  FROM   changes
+                  GROUP  BY beasts,
+                            bricks,
+                            gems
+                 
+                  HAVING MAX(changes_id) IS NOT NULL);
+				  
+				  
+DELETE  FROM changes;
+DELETE  FROM mod;
+DELETE FROM card;
+
+
+
+ */
+ /*
+Class.forName(driverName);
+       con = DriverManager.getConnection(url+dbName,userName,password);
+       Statement st = con.createStatement();
+       File imgfile = new File("pic.jpg");
+
+      FileInputStream fin = new FileInputStream(imgfile);
+
+       PreparedStatement pre =
+       con.prepareStatement("insert into Image values(?,?,?)");
+
+       pre.setString(1,"test");
+       pre.setInt(2,3);
+       pre.setBinaryStream(3,(InputStream)fin,(int)imgfile.length());
+       pre.executeUpdate();
+       System.out.println("Successfully inserted the file into the database!");
+
+       pre.close();
+       con.close(); 
+    }catch (Exception e1){
+        System.out.println(e1.getMessage());
+
+
+
+
+
+
+
+
+ System.out.println("Retrive Image Example!");
+    String driverName = "com.mysql.jdbc.Driver";
+    String url = "jdbc:mysql://localhost:3306/";
+    String dbName = "test";
+    String userName = "root";
+    String password = "root";
+    Connection con = null;
+    try{
+        Class.forName(driverName);
+        con = DriverManager.getConnection(url+dbName,userName,password);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("select image from image");
+        int i = 0;
+        while (rs.next()) {
+            InputStream in = rs.getBinaryStream(1);
+            OutputStream f = new FileOutputStream(new File("test"+i+".jpg"));
+            i++;
+            int c = 0;
+            while ((c = in.read()) > -1) {
+                f.write(c);
+            }
+            f.close();
+            in.close();
+        }
+    }catch(Exception ex){
+        System.out.println(ex.getMessage());
+    }
+}
+
+
+ */

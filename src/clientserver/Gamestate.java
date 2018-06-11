@@ -99,8 +99,8 @@ public class Gamestate {
                         throw new Notusableerror();
                 }
 
-                if (c.getChanges_player_beats() != 0) {
-                    beasts += c.getChanges_player_beats();
+                if (c.getChanges_player_beasts()!= 0) {
+                    beasts += c.getChanges_player_beasts();
                     if (beasts < 0) {
                         beasts = 0;
                     }
@@ -216,8 +216,8 @@ public class Gamestate {
                 
                 
                 
-                 if (c.getChanges_player_beats() != 0) {
-                    beasts2 += c.getChanges_player_beats();
+                 if (c.getChanges_player_beasts()!= 0) {
+                    beasts2 += c.getChanges_player_beasts();
                     if (beasts2 < 0) {
                         beasts2 = 0;
                     }
