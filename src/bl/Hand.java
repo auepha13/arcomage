@@ -83,6 +83,14 @@ public class Hand {
         
         return card;
     }
+
+    public Card[] getHand() {
+        return hand;
+    }
+
+    public void setHand(Card[] hand) {
+        this.hand = hand;
+    }
     
   
 }

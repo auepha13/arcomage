@@ -40,17 +40,19 @@ public class ArcoClient {
         
 
     }
-            public void sendRequest(Object request) throws IOException, ClassNotFoundException {
+            public Gamestate sendRequest(Object request) throws IOException, ClassNotFoundException {
      
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             oos.writeObject(request); //an server schicken und lesen
-            ois.readObject().toString();
+            Gamestate gs = (Gamestate) ois.readObject();
             
-            System.out.println(ois.readObject().toString());
+            
             oos.close();
             ois.close();
             socket.close();
-    
+            return gs;
              }
+            
+           
 }

@@ -19,10 +19,12 @@ public class starter {
         server.setVisible(true);
         server.btstart();
         
-        ClientGUI c1=new ClientGUI();
-        ClientGUI c2=new ClientGUI();    
-         c1.setVisible(true);
-         c2.setVisible(true);
+//        ClientGUI c1=new ClientGUI();
+//        c1.setplayernr(1);
+//        ClientGUI c2=new ClientGUI();    
+//        c2.setplayernr(2);
+//        c1.setVisible(true);
+//        c2.setVisible(true);
     }
     
     

@@ -17,7 +17,7 @@ public class Card {
     private int mod_player_bestiary;
     private int mod_player_quarry;
     private int mod_player_magic;
-    private int changes_enemy_beats;
+    private int changes_enemy_beasts;
     private int changes_enemy_bricks;
     private int changes_enemy_gems;
     private int changes_player_beats;
@@ -38,7 +38,7 @@ public class Card {
         this.mod_player_bestiary = mod_player_bestiary;
         this.mod_player_quarry = mod_player_quarry;
         this.mod_player_magic = mod_player_magic;
-        this.changes_enemy_beats = changes_enemy_beats;
+        this.changes_enemy_beasts = changes_enemy_beats;
         this.changes_enemy_bricks = changes_enemy_bricks;
         this.changes_enemy_gems = changes_enemy_gems;
         this.changes_player_beats = changes_player_beats;
@@ -148,12 +148,12 @@ public class Card {
         this.mod_player_magic = mod_player_magic;
     }
 
-    public int getChanges_enemy_beats() {
-        return changes_enemy_beats;
+    public int getChanges_enemy_beasts() {
+        return changes_enemy_beasts;
     }
 
-    public void setChanges_enemy_beats(int changes_enemy_beats) {
-        this.changes_enemy_beats = changes_enemy_beats;
+    public void setChanges_enemy_beasts(int changes_enemy_beats) {
+        this.changes_enemy_beasts = changes_enemy_beats;
     }
 
     public int getChanges_enemy_bricks() {

@@ -134,7 +134,7 @@ public abstract class BasicServer
     public void run()
     {
       try (ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-          ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream()))
+           ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream()))
       {
         Object request = ois.readObject();
         oos.writeObject(processRequest(request));
@@ -142,7 +142,7 @@ public abstract class BasicServer
       {
         log("Error in ClientCommunicationThread " + ex.toString());
       }
-      log("request finished " + socket.getRemoteSocketAddress());
+        log("request finished " + socket.getRemoteSocketAddress());
     }
   }
 

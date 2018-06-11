@@ -17,97 +17,51 @@ public class Player {
     private int tower;
     private int  wall;
     
-    private int bestiary =1;
-    private int quarry = 1;
-    private int magic = 1;
+    private int bestiary;
+    private int quarry;
+    private int magic;
     
-    private int beasts = 0;
-    private int bricks = 0;
-    private int gems = 0;
+    private int beasts;
+    private int bricks;
+    private int gems;
+    
+    private int bestiary2;
+    private int quarry2;
+    private int magic2;
+    
+    private int beasts2;
+    private int bricks2;
+    private int gems2;
     
     private boolean win;
-    
-    private int wintowerval =0;
-    
-    public Player() {  //win value
-        h = new Hand();
-        tower = 50;
-        wall = 0;
-        wintowerval = 100;
-    }
+        
+    private int playernr;
 
-    public Player(int tower, int wall) {
+    public Player(int nr, Hand h, int tower, int wall, int bestiary, int quarry, int magic, int beasts, int bricks, int gems, int bestiary2, int quarry2, int magic2, int beasts2, int bricks2, int gems2, boolean win) {
+        this.playernr = nr;
+        this.h = h;
         this.tower = tower;
         this.wall = wall;
-        wintowerval = 100;
+        this.bestiary = bestiary;
+        this.quarry = quarry;
+        this.magic = magic;
+        this.beasts = beasts;
+        this.bricks = bricks;
+        this.gems = gems;
+        this.bestiary2 = bestiary2;
+        this.quarry2 = quarry2;
+        this.magic2 = magic2;
+        this.beasts2 = beasts2;
+        this.bricks2 = bricks2;
+        this.gems2 = gems2;
+        this.win = win;
     }
 
-    public Player(int tower, int wall, int wintowerval) {
-        this.tower = tower;
-        this.wall = wall;
-        this.wintowerval = wintowerval;
-    }
     
     
     
-    public void usecard(Card c) throws Notusableerror
-    {     
-        
-        switch(c.getType())
-        {
-            case 1:if(beasts >= c.getRequirement()){ beasts -= c.getRequirement();} break;
-             case 2:if(bricks >= c.getRequirement()){ bricks -= c.getRequirement();}break;
-              case 3:if(gems >= c.getRequirement()){ gems -= c.getRequirement();};break;
-              default: throw new Notusableerror(); 
-        }
-        
-        
-//    private int mod_enemy_bestiary;
-//    private int mod_enemy_quarry;
-//    private int mod_enemy_magic;
-//    private int mod_player_bestiary;
-//    private int mod_player_quarry;
-//    private int mod_player_magic;
-//    private int changes_enemy_beats;
-//    private int changes_enemy_bricks;
-//    private int changes_enemy_gems;
-//    private int changes_player_beats;
-//    private int changes_player_bricks;
-//    private int changes_player_gems;
-        
-        
-            if(c.getDamage_self()!=0)
-            {
-                healthchange(c.getDamage_self());
-            }
-            
-            //hand von slot verwenden und neue ziehen
-    }
-    
-    public void healthchange(int value)
-    {
-        
-        tower += value; 
-        
-        if(tower >= wintowerval)
-        {
-            endgame(true);
-        }
-
-        if(tower <= 0)
-        {
-            endgame(false);
-        }
-    }
-    
-    
-    public void endgame(boolean w)
-    {
-        win = w;//... todo falls gewonnen
-    }
     
 
-    
 class Notusableerror extends Exception
 {
     Notusableerror()
@@ -115,4 +69,94 @@ class Notusableerror extends Exception
         super("Diese karte kann nicht gespielt werden");
     }
 }
+
+    public Hand getH() {
+        return h;
+    }
+
+    public void setH(Hand h) {
+        this.h = h;
+    }
+
+    public int getTower() {
+        return tower;
+    }
+
+    public void setTower(int tower) {
+        this.tower = tower;
+    }
+
+    public int getWall() {
+        return wall;
+    }
+
+    public void setWall(int wall) {
+        this.wall = wall;
+    }
+
+    public int getBestiary() {
+        return bestiary;
+    }
+
+    public void setBestiary(int bestiary) {
+        this.bestiary = bestiary;
+    }
+
+    public int getQuarry() {
+        return quarry;
+    }
+
+    public void setQuarry(int quarry) {
+        this.quarry = quarry;
+    }
+
+    public int getMagic() {
+        return magic;
+    }
+
+    public void setMagic(int magic) {
+        this.magic = magic;
+    }
+
+    public int getBeasts() {
+        return beasts;
+    }
+
+    public void setBeasts(int beasts) {
+        this.beasts = beasts;
+    }
+
+    public int getBricks() {
+        return bricks;
+    }
+
+    public void setBricks(int bricks) {
+        this.bricks = bricks;
+    }
+
+    public int getGems() {
+        return gems;
+    }
+
+    public void setGems(int gems) {
+        this.gems = gems;
+    }
+
+    public boolean isWin() {
+        return win;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
+    }
+
+    public int getPlayernr() {
+        return playernr;
+    }
+
+    public void setPlayernr(int playernr) {
+        this.playernr = playernr;
+    }
+
+
 }

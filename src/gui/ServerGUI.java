@@ -31,7 +31,7 @@ public class ServerGUI extends javax.swing.JFrame {
     
     public void btstart()
     {
-        as.startServer();
+        //as.startServer();
     }
     
     

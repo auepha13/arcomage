@@ -6,7 +6,9 @@
 package gui;
 
 import beans.Player;
+import beans.Playercard;
 import clientserver.ArcoClient;
+import clientserver.Gamestate;
 import database.DB_Access;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -22,19 +24,70 @@ public class ClientGUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     
-    //private DB_Access dba = DB_Access.getInstance();
     private ArcoClient c;
+    private int playernr =0;
+    private Player  p = null;
+    private Gamestate gs;
     
     public ClientGUI() {
         initComponents();
         
+        
         c= new ArcoClient();
-        createPlayer();
+        try {
+           actplayer(c.sendRequest(playernr));
+        } catch (IOException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public void createPlayer()
+    
+    
+    public void setplayernr(int nr)
     {
-        Player p = new Player();
+        playernr= nr;
+    }
+    
+    private void actplayer(Gamestate gs)
+    {
+        if(playernr == 1)
+        {
+           //as gs die werte setzten zb. quarry
+        bt1.setText(gs.getH().getHand()[1].getName());
+        tfbricks.setText(gs.getBricks()+"");  
+        }
+        else{
+            
+        }
+        
+        
+       
+    }
+    
+    //thread machen!!!
+    class ClientThread extends Thread {
+
+        @Override
+        public void run() {
+            while (!interrupted()) {
+                try {
+                    wait(100);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    gs = c.sendRequest(playernr);
+                    actplayer(gs);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+        }
+    }
     }
 
     /**
@@ -52,7 +105,7 @@ public class ClientGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        tfbricks = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -87,8 +140,8 @@ public class ClientGUI extends javax.swing.JFrame {
         jLabel7.setText("Enemy");
         jPanel2.add(jLabel7);
 
-        jLabel6.setText("Bricks/Quarry:");
-        jPanel2.add(jLabel6);
+        tfbricks.setText("Bricks/Quarry:");
+        jPanel2.add(tfbricks);
         jPanel2.add(jLabel10);
         jPanel2.add(jLabel11);
 
@@ -132,18 +185,43 @@ public class ClientGUI extends javax.swing.JFrame {
         jPanel1.add(bt1);
 
         bt2.setText("2");
+        bt2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(bt2);
 
         bt3.setText("3");
+        bt3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(bt3);
 
         bt4.setText("4");
+        bt4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(bt4);
 
         bt5.setText("5");
+        bt5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(bt5);
 
         bt6.setText("6");
+        bt6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt6ActionPerformed(evt);
+            }
+        });
         jPanel1.add(bt6);
 
         getContentPane().add(jPanel1);
@@ -153,13 +231,63 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
         try {
-            c.sendRequest("1");
+            c.sendRequest(new Playercard(1,playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bt1ActionPerformed
+
+    private void bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2ActionPerformed
+        try {
+            c.sendRequest(new Playercard(2,playernr));
+        } catch (IOException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt2ActionPerformed
+
+    private void bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt3ActionPerformed
+        try {
+            c.sendRequest(new Playercard(3,playernr));
+        } catch (IOException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt3ActionPerformed
+
+    private void bt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt4ActionPerformed
+        try {
+            c.sendRequest(new Playercard(4,playernr));
+        } catch (IOException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt4ActionPerformed
+
+    private void bt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt5ActionPerformed
+        try {
+            c.sendRequest(new Playercard(5,playernr));
+        } catch (IOException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt5ActionPerformed
+
+    private void bt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt6ActionPerformed
+        try {
+            c.sendRequest(new Playercard(6,playernr));
+        } catch (IOException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,11 +345,11 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel tfbricks;
     // End of variables declaration//GEN-END:variables
 }
