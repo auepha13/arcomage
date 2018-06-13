@@ -1,2 +1,2 @@
 Arcomage is the greatest Card game ever.
-We will build it in java
+We built it in java
