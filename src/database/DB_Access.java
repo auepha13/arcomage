@@ -4,6 +4,8 @@
 package database;
 
 import beans.Card;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -16,11 +18,14 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author Stefan
  */
+
+//Database access
 public class DB_Access {
 
     // create DB_Access as Singleton
@@ -38,19 +43,7 @@ public class DB_Access {
     private DB_Access() {
     }
 
-    //braucht man nicht
-    public List<Card> getAllCards() throws SQLException, Exception {
-        Connection conn = connections.getConnection();
-        PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetAllCards);
-        ResultSet rs = stat.executeQuery();
-        List<Card> cardlist = new LinkedList<>();
-        while (rs.next()) {
-
-        }
-        connections.releaseConnection(conn);
-        return cardlist;
-    }
-
+    //Inserts the base information of a card
     public void insertCard(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -77,6 +70,7 @@ public class DB_Access {
 
     }
 
+    //Fills the other 2 Tables
     public void insertVa(Card card) {
         try {
             insertChangesE(card);
@@ -91,6 +85,7 @@ public class DB_Access {
         }
     }
 
+    //inserts the Enemy Changes
     public void insertChangesE(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -112,6 +107,7 @@ public class DB_Access {
 
     }
 
+    //inserts the Player Changes
     public void insertChangesP(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -133,23 +129,7 @@ public class DB_Access {
 
     }
 
-    public void deleteDoubleChanges() throws SQLException, InterruptedException {
-
-        try {
-
-            Connection conn = connections.getConnection();
-            PreparedStatement stat = statementPool.getPrepStatement(conn, DB_Stmt_Type.DeleteDoubleChanges);
-
-            stat.executeUpdate();
-
-            connections.releaseConnection(conn);
-
-        } catch (Exception ex) {
-            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
+    //inserts the Enemy Mod
     public void insertModE(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -169,6 +149,7 @@ public class DB_Access {
 
     }
 
+    //inserts the Player Mod
     public void insertModP(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -188,6 +169,7 @@ public class DB_Access {
 
     }
 
+    //inserts the Card Picture
     public void insertCardPicture(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -204,8 +186,9 @@ public class DB_Access {
             stat.setInt(2, card.getCard_id());
 
             stat.executeUpdate();
-            System.out.println("Successfully inserted the file into the database!");
+            //System.out.println("Successfully inserted the file into the database!");
             connections.releaseConnection(conn);
+            fin.close();
 
         } catch (Exception ex) {
             Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,6 +196,7 @@ public class DB_Access {
 
     }
 
+    //Updates the Card with the correct foreign keys
     public void CardUpdate(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -231,7 +215,7 @@ public class DB_Access {
             // System.out.println(card.getMod_player_bestiary() + " " + card.getMod_player_quarry() + " " + card.getMod_player_magic());
             while (rs.next()) {
                 modPid = rs.getInt(1);
-                System.out.print(" " + modPid);
+                //System.out.print(" " + modPid);
 
             }
 
@@ -243,7 +227,7 @@ public class DB_Access {
 
             while (rs.next()) {
                 modEid = rs.getInt(1);
-                System.out.print(" " + modEid);
+                //System.out.print(" " + modEid);
 
             }
 
@@ -257,7 +241,7 @@ public class DB_Access {
 
             while (rs.next()) {
                 changesEid = rs.getInt(1);
-                System.out.print(" " + changesEid);
+                //System.out.print(" " + changesEid);
 
             }
 
@@ -271,7 +255,7 @@ public class DB_Access {
 
             while (rs.next()) {
                 changesPid = rs.getInt(1);
-                System.out.print(" " + changesPid);
+                //System.out.print(" " + changesPid);
 
             }
 
@@ -284,16 +268,6 @@ public class DB_Access {
 
             stat.executeUpdate();
 
-            //"UPDATE card SET mod_enemy = ?, mod_player = ?, ""changes_enemy = ?, changes_player = ?\WHERE card_id = ?"),
-            System.out.println(" next card");
-
-            //  modPid = rs.getInt(1);
-            // System.out.println(modPid);
-//            PreparedStatement stat2 = statementPool.getPrepStatement(conn, DB_Stmt_Type.GetModID);
-//            rs = stat.executeQuery();
-//            changesPid = rs.getInt(1);
-//
-//            PreparedStatement stat3 = statementPool.getPrepStatement(conn, DB_Stmt_Type.CardUpdate);
             connections.releaseConnection(conn);
 
         } catch (Exception ex) {
@@ -302,6 +276,7 @@ public class DB_Access {
 
     }
 
+    //return a random Card object
     public Card getRandomCard() throws SQLException, Exception {
 
         int cardcount = 0;
@@ -315,7 +290,7 @@ public class DB_Access {
             cardcount = rs.getInt(1);
         }
         int rnd = ThreadLocalRandom.current().nextInt(1, cardcount + 1);
-        System.out.println(rnd);
+        //System.out.println(rnd);
 
         card = getCard(rnd);
 
@@ -324,6 +299,7 @@ public class DB_Access {
 
     }
 
+    //returns a specific Card object
     public Card getCard(int card_id) throws SQLException, Exception {
 
         Card card = null;
@@ -340,7 +316,7 @@ public class DB_Access {
 
             String name = rs.getString(2);
             String description = rs.getString(3);
-            File picture = null;
+            Image picture = null;
             int type = rs.getInt(5);
             int requirement = rs.getInt(6);
             boolean additional_turn = rs.getBoolean(7);
@@ -364,7 +340,9 @@ public class DB_Access {
             int changes_player_tower = rs.getInt(33);
             int changes_player_wall = rs.getInt(33);
 
-            System.out.println(rs.getString(1));
+            BufferedImage imBuff = ImageIO.read(rs.getBinaryStream(4));
+            picture = (Image) imBuff;
+
             card = new Card(card_id, name, description, picture, type, requirement, additional_turn, discardable, damage_enemy, damage_self, mod_enemy_bestiary, mod_enemy_quarry, mod_enemy_magic, mod_player_bestiary, mod_player_quarry, mod_player_magic, changes_enemy_beasts, changes_enemy_bricks, changes_enemy_gems, changes_enemy_tower, changes_enemy_wall, changes_player_beast, changes_player_bricks, changes_player_gems, changes_player_tower, changes_player_wall);
         }
 
@@ -373,22 +351,26 @@ public class DB_Access {
 
     }
 
-    //random card obejekt 
-    //
-    public static void main(String[] args) {
-        try {
-            DB_Access access = DB_Access.getInstance();
-
-            // Card card = access.getCard(1);
-            Card card = access.getRandomCard();
-            System.out.println(card.toString());
-        } catch (Exception ex) {
-            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+// Main to test the connection    
+//    public static void main(String[] args) {
+//        try {
+//            DB_Access access = DB_Access.getInstance();
+//
+//            // Card card = access.getCard(1);
+//            //Card card = access.getRandomCard();
+//            // System.out.println(card.toString());
+//            //System.out.println(card.getPicture().toString());
+//        } catch (Exception ex) {
+//            Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
 }
 
+
+
+
+//Statements used in pgadmin
 /*
 SELECT *
 FROM card
