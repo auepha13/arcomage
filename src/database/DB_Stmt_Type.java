@@ -9,23 +9,13 @@ package database;
  *
  * @author Stefan
  */
+
+//SQL Statements
 public enum DB_Stmt_Type {
-    GetAllCards("SELECT * FROM card"),
-    InsertCardOLD("INSERT INTO card (card_id, name, description, picture_path, type, requirement,"
-            + " damage_self, damage_enemy) "
-            + "VALUES(?,?,?,?,?,?,?,?);"),
     InsertCard("INSERT INTO card (name, description, type, requirement, additional_turn, discardable, damage_enemy,damage_self)"
             + " VALUES (?,?,?,?,?,?,?,?)"),
     InsertChanges("INSERT INTO changes (beasts, bricks, gems, tower, wall) VALUES (?,?,?,?,?)"),
     InsertMod("INSERT INTO mod (bestiary, quarry, magic) VALUES (?,?,?)"),
-    DeleteDoubleChanges("DELETE FROM changes\n"
-            + "WHERE  changes_id NOT IN (SELECT MAX(changes_id)\n"
-            + "FROM   changes\n"
-            + "GROUP  BY beasts,\n"
-            + "bricks,\n"
-            + "gems\n"
-            + "HAVING MAX(changes_id) IS NOT NULL);\n"
-            + "DELETE  FROM changes;"),
     CardUpdate("UPDATE card SET mod_enemy = ?, mod_player = ?, "
             + "changes_enemy = ?, changes_player = ?\n"
             + "WHERE card_id = ?"),
