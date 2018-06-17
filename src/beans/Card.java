@@ -1,8 +1,10 @@
 package beans;
 
-import java.io.File;
+import java.awt.Image;
 
-//Alle attribute der Karten, wird vom Server aus Datenbank gelesen 
+
+
+//All variables for the card object
 public class Card {
 
     public Card(int card_id, int mod_enemy_bestiary, int mod_enemy_quarry, int mod_enemy_magic, int mod_player_bestiary, int mod_player_quarry, int mod_player_magic, int changes_enemy_beasts, int changes_enemy_bricks, int changes_enemy_gems, int changes_enemy_tower, int changes_enemy_wall, int changes_player_beasts, int changes_player_bricks, int changes_player_gems, int changes_player_tower, int changes_player_wall) {
@@ -28,7 +30,7 @@ public class Card {
     private int card_id;
     private String name;
     private String description;
-    private File picture;
+    private Image picture;
     private int type;
     private int requirement;
     private boolean additional_turn;
@@ -52,7 +54,7 @@ public class Card {
     private int changes_player_tower;
     private int changes_player_wall;
 
-    public Card(int card_id, String name, String description, File picture, int type, int requirement, boolean additional_turn, boolean discardable, int damage_enemy, int damage_self, int mod_enemy_bestiary, int mod_enemy_quarry, int mod_enemy_magic, int mod_player_bestiary, int mod_player_quarry, int mod_player_magic, int changes_enemy_beasts, int changes_enemy_bricks, int changes_enemy_gems, int changes_enemy_tower, int changes_enemy_wall, int changes_player_beasts, int changes_player_bricks, int changes_player_gems, int changes_player_tower, int changes_player_wall) {
+    public Card(int card_id, String name, String description, Image picture, int type, int requirement, boolean additional_turn, boolean discardable, int damage_enemy, int damage_self, int mod_enemy_bestiary, int mod_enemy_quarry, int mod_enemy_magic, int mod_player_bestiary, int mod_player_quarry, int mod_player_magic, int changes_enemy_beasts, int changes_enemy_bricks, int changes_enemy_gems, int changes_enemy_tower, int changes_enemy_wall, int changes_player_beasts, int changes_player_bricks, int changes_player_gems, int changes_player_tower, int changes_player_wall) {
         this.card_id = card_id;
         this.name = name;
         this.description = description;
@@ -105,13 +107,15 @@ public class Card {
         this.description = description;
     }
 
-    public File getPicture() {
+    public Image getPicture() {
         return picture;
     }
 
-    public void setPicture(File picture) {
+    public void setPicture(Image picture) {
         this.picture = picture;
     }
+
+
 
     public int getType() {
         return type;
