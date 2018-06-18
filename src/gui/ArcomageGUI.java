@@ -261,14 +261,6 @@ public class ArcomageGUI extends Application{
                     {
                         selCard[j].setTranslateX(0);
                         selCard[j].setTranslateY(0);
-                        cardDiscard[j] = false;
-                        i[j] = rand.nextInt(87) + 1;
-                        try {
-                            card[j] = new Image(new FileInputStream(path + ((i[j] < 30) ? "red.png" : (i[j] < 59) ? "blue.png" : "green.png")));
-                            template[j] = new Image(new FileInputStream(path + i[j] + ".png"));
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
-                        }
                         
                         if (!cardDiscard[j])
                         {
@@ -278,6 +270,16 @@ public class ArcomageGUI extends Application{
                         {
                             discardCard(new Card(i[j], "", "", 0, 0, false, true, 0, 0), j);
                         }
+                        
+                        cardDiscard[j] = false;
+                        i[j] = rand.nextInt(87) + 1;
+                        try {
+                            card[j] = new Image(new FileInputStream(path + ((i[j] < 30) ? "red.png" : (i[j] < 59) ? "blue.png" : "green.png")));
+                            template[j] = new Image(new FileInputStream(path + i[j] + ".png"));
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
                     }
                     selCard[j].setX(x[j] + selCard[j].getTranslateX());
                     selCard[j].setY(y[j] + selCard[j].getTranslateY());
@@ -386,12 +388,12 @@ public class ArcomageGUI extends Application{
     
     public void useCard(Card card, int location)
     {
-        
+        System.out.println("Used: " + card.getCard_id() + " an der Stelle: " + location);
     }
     
     public void discardCard(Card card, int location)
     {
-        
+        System.out.println("Discarded: " + card.getCard_id() + " an der Stelle: " + location);
     }
     
 }
