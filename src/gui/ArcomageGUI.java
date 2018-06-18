@@ -5,6 +5,7 @@
  */
 package gui;
 
+import beans.Card;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -61,6 +62,8 @@ public class ArcomageGUI extends Application{
     private int[] healthTower = {25, 25};
     private int[] healthWall = {10, 10};
     private int[] cardCosts = {6, 2, 12, 35, 3, 2};
+    private int[] resources = {2, 2, 2, 2, 2, 2};
+    private int[] changes = {2, 2, 2, 2, 2, 2};
     private boolean[] cardDiscard = {false, false, false, false, false, false};
     
     public static void main(String[] args) {
@@ -216,12 +219,12 @@ public class ArcomageGUI extends Application{
                     gc.fillText("Enemy", canvasSize[0] - 132, 25, 105);
                     
                     //Player/Enemy-Resources
-                    gc.fillText("2", 25, 151);
-                    gc.fillText("2", 25, 279);
-                    gc.fillText("2", 25, 407);
-                    gc.fillText("2", canvasSize[0] - 127, 151);
-                    gc.fillText("2", canvasSize[0] - 127, 279);
-                    gc.fillText("2", canvasSize[0] - 127, 407);
+                    gc.fillText(resources[0] + "", 25, 151);
+                    gc.fillText(resources[1] + "", 25, 279);
+                    gc.fillText(resources[2] + "", 25, 407);
+                    gc.fillText(resources[3] + "", canvasSize[0] - 127, 151);
+                    gc.fillText(resources[4] + "", canvasSize[0] - 127, 279);
+                    gc.fillText(resources[5] + "", canvasSize[0] - 127, 407);
                     
                     //Player/Enemy-Health
                     gc.setTextAlign(TextAlignment.CENTER);
@@ -235,12 +238,12 @@ public class ArcomageGUI extends Application{
                     gc.setFont(numberLarge);
                     gc.setFill(Color.YELLOW.darker().darker().darker());
                     
-                    gc.fillText("2", 28, 113);
-                    gc.fillText("2", 28, 241);
-                    gc.fillText("2", 28, 369);
-                    gc.fillText("2", canvasSize[0] - 124, 113);
-                    gc.fillText("2", canvasSize[0] - 124, 241);
-                    gc.fillText("2", canvasSize[0] - 124, 369);
+                    gc.fillText(changes[0] + "", 28, 113);
+                    gc.fillText(changes[1] + "", 28, 241);
+                    gc.fillText(changes[2] + "", 28, 369);
+                    gc.fillText(changes[3] + "", canvasSize[0] - 124, 113);
+                    gc.fillText(changes[4] + "", canvasSize[0] - 124, 241);
+                    gc.fillText(changes[5] + "", canvasSize[0] - 124, 369);
                 
                 //Türme und Walls werden geladen
                 selGc.drawImage(tower[0], canvasSize[0] - 250 - tower[0].getWidth(), canvasSize[1] - card[0].getHeight() - 3 - tower[0].getHeight() * healthTower[1] / 100);
@@ -265,6 +268,15 @@ public class ArcomageGUI extends Application{
                             template[j] = new Image(new FileInputStream(path + i[j] + ".png"));
                         } catch (FileNotFoundException ex) {
                             Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        if (!cardDiscard[j])
+                        {
+                            useCard(new Card(i[j], "", "", 0, 0, false, false, 0, 0), j);
+                        }
+                        else
+                        {
+                            discardCard(new Card(i[j], "", "", 0, 0, false, true, 0, 0), j);
                         }
                     }
                     selCard[j].setX(x[j] + selCard[j].getTranslateX());
@@ -300,6 +312,86 @@ public class ArcomageGUI extends Application{
         }.start();
         
         stage.show();
+    }
+
+    // Feld mit allen KartenIDs des Players
+    
+    public int[] getI() {
+        return i;
+    }
+
+    public void setI(int[] i) {
+        this.i = i;
+    }
+
+    // Feld für TowerHealth, 0 = Player, 1 = Enemy
+    
+    public int[] getHealthTower() {
+        return healthTower;
+    }
+
+    public void setHealthTower(int[] healthTower) {
+        this.healthTower = healthTower;
+    }
+
+    // Feld für WallHealth, 0 = Player, 1 = Enemy
+    
+    public int[] getHealthWall() {
+        return healthWall;
+    }
+
+    public void setHealthWall(int[] healthWall) {
+        this.healthWall = healthWall;
+    }
+
+    // Feld für die Kosten aller Karten
+    
+    public int[] getCardCosts() {
+        return cardCosts;
+    }
+    
+    public void setCardCosts(int[] cardCosts) {
+        this.cardCosts = cardCosts;
+    }
+
+    // Feld für die Resourcen, 0-2 Player, 3-5 Enemy
+    
+    public int[] getResources() {
+        return resources;
+    }
+
+    public void setResources(int[] resources) {
+        this.resources = resources;
+    }
+
+    // Feld für Changes, 0-2 Player, 3-5 Enemy
+    
+    public int[] getChanges() {
+        return changes;
+    }
+
+    public void setChanges(int[] changes) {
+        this.changes = changes;
+    }
+
+    //Feld für Discard Karte des Players
+    
+    public boolean[] getCardDiscard() {
+        return cardDiscard;
+    }
+
+    public void setCardDiscard(boolean[] cardDiscard) {
+        this.cardDiscard = cardDiscard;
+    }
+    
+    public void useCard(Card card, int location)
+    {
+        
+    }
+    
+    public void discardCard(Card card, int location)
+    {
+        
     }
     
 }
