@@ -1,3 +1,6 @@
+Created by: Stefan Atzlinger, Pilipp Auer, Florian Rottmann
+on https://github.com/auepha13/arcomage
+
 Arcomage is the greatest Card game ever.
 We built it in java
 
