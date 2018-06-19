@@ -8,6 +8,8 @@ package main;
 import gui.ArcomageGUI;
 import gui.ClientGUI;
 import gui.ServerGUI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,17 +20,14 @@ public class starter {
     
     
     public static void main(String[] args) {
-        ArcomageGUI gui = new ArcomageGUI();
-//        ServerGUI server =new ServerGUI();
-//        server.setVisible(true);
-//        server.btstart();
-//        
-//        ClientGUI c1=new ClientGUI();
-//        c1.setplayernr(1);
-//        ClientGUI c2=new ClientGUI();    
-//        c2.setplayernr(2);
-//        c1.setVisible(true);
-//        c2.setVisible(true);
+        ArcomageGUI gui = new ArcomageGUI(1);
+        ArcomageGUI gui2 = new ArcomageGUI(2);
+        try {
+            gui.start(gui.classStage);
+            gui2.start(gui2.classStage);
+        } catch (Exception ex) {
+            Logger.getLogger(starter.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     
