@@ -8,14 +8,13 @@ package clientserver;
 import beans.Card;
 import beans.Player;
 import bl.Hand;
-import java.io.Serializable;
 
 /**
  *
  * @author Philipp
  */
 public class Gamestate {
-    //alles wichtige für beide spieler von Palyer holen
+    //alles wichtige für beide spieler von Player holen
 
     private Hand h;
     private int tower;
@@ -25,9 +24,9 @@ public class Gamestate {
     private int quarry = 2;
     private int magic = 2;
 
-    private int beasts = 120;
-    private int bricks = 120;
-    private int gems = 120;
+    private int beasts = 10;
+    private int bricks = 10;
+    private int gems = 10;
 
     private Hand h2;
     private int tower2;
@@ -37,9 +36,9 @@ public class Gamestate {
     private int quarry2 = 2;
     private int magic2 = 2;
 
-    private int beasts2 = 120;
-    private int bricks2 = 120;
-    private int gems2 = 120;
+    private int beasts2 = 10;
+    private int bricks2 = 10;
+    private int gems2 = 10;
 
     private boolean win;
 
@@ -454,7 +453,7 @@ public class Gamestate {
     }
 
     public void endturn() {
-        System.out.println(actualplayer);
+        System.out.println("player "+actualplayer);
         if (this.actualplayer == 1) {
             beasts +=bestiary;
             bricks +=quarry;

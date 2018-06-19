@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Philipp
@@ -23,47 +22,41 @@ public class ClientGUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    
     private ArcoClient c;
-    private int playernr =0;
-    private Player  p = null;
+    private int playernr = 0;
+    private Player p = null;
     //private Gamestate gs;
     private ClientThread ct;
-    
+
     public ClientGUI(int nr) {
         initComponents();
         setplayernr(nr);
-        
-        
-        c= new ArcoClient();
+
+        c = new ArcoClient();
         try {
-           actplayer(c.sendRequest(playernr));
+            actplayer(c.sendRequest(playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-         ct = new ClientThread();
-         ct.start();
+        ct = new ClientThread();
+        ct.start();
     }
-       
+
     private ClientGUI() {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    public void setplayernr(int nr)
-    {
-        playernr= nr;
-        lbplayer.setText("Player "+playernr);
+
+    public void setplayernr(int nr) {
+        playernr = nr;
+        lbplayer.setText("Player " + playernr);
     }
-    
-    private void actplayer(Player p)
-    {
-        
-           //as player die werte setzten zb. quarry
-        bt1.setText(p.getHand()[0].getName()+" "+p.getHand()[0].getDescription());//beschreibung hinzufügen
+
+    private void actplayer(Player p) {
+
+        //as player die werte setzten zb. quarry
+        bt1.setText(+p.getHand()[0].getRequirement()+" "+ p.getHand()[0].getDescription());//beschreibung hinzufügen
 //        System.out.println(p.getHand()[0].getName());
 //        System.out.println(p.getHand()[0].getDescription());
 //        System.out.println("Enemy_Tower:"+p.getHand()[0].getChanges_enemy_tower());
@@ -71,31 +64,30 @@ public class ClientGUI extends javax.swing.JFrame {
 //        System.out.println("Enemy_Damage:"+p.getHand()[0].getDamage_enemy());
 //        System.out.println("Player_Tower:"+p.getHand()[0].getChanges_player_tower());
 //        System.out.println("Player_Wall:"+p.getHand()[0].getChanges_player_wall());
-        
-        bt2.setText(p.getHand()[1].getName()+" "+p.getHand()[1].getDescription());
-        bt3.setText(p.getHand()[2].getName()+" "+p.getHand()[2].getDescription());
-        bt4.setText(p.getHand()[3].getName()+" "+p.getHand()[3].getDescription());
-        bt5.setText(p.getHand()[4].getName()+" "+p.getHand()[4].getDescription());
-        bt6.setText(p.getHand()[5].getName()+" "+p.getHand()[5].getDescription());
-       
-        lbbricks.setText("Bricks:"+p.getBricks()+"/ Quarry:"+p.getQuarry());  
-        lbgems.setText("Gems:"+p.getGems()+"/ Magic:"+p.getMagic());
-        lbbeasts.setText("Beasts:"+p.getBeasts()+"/ Beasiary:"+p.getBestiary());
-        
-        lbwall.setText("Wall:"+p.getWall());
-        System.out.println(p.getWall());
-        lbtower.setText("Tower:"+p.getTower());
-        
-        lbwall2.setText("Wall:"+p.getWall2());
-        lbtower2.setText("Tower:"+p.getTower2());
-       
-        lbbricks2.setText("Bricks:"+p.getBricks2()+"/ Quarry:"+p.getQuarry2());  
-        lbgems2.setText("Gems:"+p.getGems2()+"/ Magic:"+p.getMagic2());
-        lbbeasts2.setText("Beasts:"+p.getBeasts2()+"/ Beasiary:"+p.getBestiary2());
-        
-       
+
+        bt2.setText(p.getHand()[1].getName() + " " + p.getHand()[1].getDescription());
+        bt3.setText(p.getHand()[2].getName() + " " + p.getHand()[2].getDescription());
+        bt4.setText(p.getHand()[3].getName() + " " + p.getHand()[3].getDescription());
+        bt5.setText(p.getHand()[4].getName() + " " + p.getHand()[4].getDescription());
+        bt6.setText(p.getHand()[5].getName() + " " + p.getHand()[5].getDescription());
+
+        lbbricks.setText("Bricks:" + p.getBricks() + "/ Quarry:" + p.getQuarry());
+        lbgems.setText("Gems:" + p.getGems() + "/ Magic:" + p.getMagic());
+        lbbeasts.setText("Beasts:" + p.getBeasts() + "/ Beasiary:" + p.getBestiary());
+
+        lbwall.setText("Wall:" + p.getWall());
+        //System.out.println(p.getWall());
+        lbtower.setText("Tower:" + p.getTower());
+
+        lbwall2.setText("Wall:" + p.getWall2());
+        lbtower2.setText("Tower:" + p.getTower2());
+
+        lbbricks2.setText("Bricks:" + p.getBricks2() + "/ Quarry:" + p.getQuarry2());
+        lbgems2.setText("Gems:" + p.getGems2() + "/ Magic:" + p.getMagic2());
+        lbbeasts2.setText("Beasts:" + p.getBeasts2() + "/ Beasiary:" + p.getBestiary2());
+
     }
-    
+
     //thread machen!!!
     class ClientThread extends Thread {
 
@@ -107,7 +99,7 @@ public class ClientGUI extends javax.swing.JFrame {
                 } catch (InterruptedException ex) {
                     System.out.println("wait fehler");
                 }
-              
+
                 try {
                     p = c.sendRequest(playernr);
                 } catch (IOException ex) {
@@ -115,31 +107,28 @@ public class ClientGUI extends javax.swing.JFrame {
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    actplayer(p);
-                    //System.out.println(p.getPlayernr());
-                    if(playernr!=p.getActualplayer())
-                    {
-                        bt1.setEnabled(false);
-                        bt2.setEnabled(false);
-                        bt3.setEnabled(false);
-                        bt4.setEnabled(false);
-                        bt5.setEnabled(false);
-                        bt6.setEnabled(false);
-                    }
-                    else{
-                        //if....
-                        //buton aus, wenn zu wenig resoucen
-                        bt1.setEnabled(true);
-                        bt2.setEnabled(true);
-                        bt3.setEnabled(true);
-                        bt4.setEnabled(true);
-                        bt5.setEnabled(true);
-                        bt6.setEnabled(true);
-                    }
-                
-            
+                actplayer(p);
+                //System.out.println(p.getPlayernr());
+                if (playernr != p.getActualplayer()) {
+                    bt1.setEnabled(false);
+                    bt2.setEnabled(false);
+                    bt3.setEnabled(false);
+                    bt4.setEnabled(false);
+                    bt5.setEnabled(false);
+                    bt6.setEnabled(false);
+                } else {
+                    //if....
+                    //buton aus, wenn zu wenig resoucen
+                    bt1.setEnabled(true);
+                    bt2.setEnabled(true);
+                    bt3.setEnabled(true);
+                    bt4.setEnabled(true);
+                    bt5.setEnabled(true);
+                    bt6.setEnabled(true);
+                }
+
+            }
         }
-    }
     }
 
     /**
@@ -283,7 +272,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
         try {
-            c.sendRequest(new Playercard(0,playernr));
+            c.sendRequest(new Playercard(0, playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -293,7 +282,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2ActionPerformed
         try {
-            c.sendRequest(new Playercard(1,playernr));
+            c.sendRequest(new Playercard(1, playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -303,7 +292,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt3ActionPerformed
         try {
-            c.sendRequest(new Playercard(2,playernr));
+            c.sendRequest(new Playercard(2, playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -313,7 +302,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt4ActionPerformed
         try {
-            c.sendRequest(new Playercard(3,playernr));
+            c.sendRequest(new Playercard(3, playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -323,7 +312,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt5ActionPerformed
         try {
-            c.sendRequest(new Playercard(4,playernr));
+            c.sendRequest(new Playercard(4, playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -333,7 +322,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt6ActionPerformed
         try {
-            c.sendRequest(new Playercard(5,playernr));
+            c.sendRequest(new Playercard(5, playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

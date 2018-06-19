@@ -398,7 +398,7 @@ public class ArcomageGUI extends Application{
                     String[] splits = p.getHand()[j].getDescription().split("_n");
                     int dist = 165;
                     for (String split : splits) {
-                        System.out.println(split);
+                        //System.out.println(split);
                         selGc.fillText(split, selCard[j].getX() + 13, selCard[j].getY() + dist, selCard[0].getWidth() - 26);
                         dist += 14;
                     }

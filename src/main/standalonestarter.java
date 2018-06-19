@@ -6,6 +6,7 @@
 package main;
 
 import gui.ArcomageGUI;
+import gui.ArcomageGUI2;
 import gui.ClientGUI;
 import gui.ServerGUI;
 import java.util.logging.Level;
@@ -19,8 +20,8 @@ import javafx.application.Application;
 public class standalonestarter {
 
     public static void main(String[] args) {
-        ArcomageGUI gui = new ArcomageGUI();
-        Application.launch(ArcomageGUI.class, args);
+        ArcomageGUI2 gui = new ArcomageGUI2();
+        Application.launch(ArcomageGUI2.class, args);
     }
 
 }

@@ -16,51 +16,42 @@ import java.util.logging.Logger;
  * @author Philipp
  */
 public class Hand {
-    
+
     public Card[] hand = new Card[6];
     private DB_Access dba = DB_Access.getInstance();
-    
-    
-    public Hand(){
-     generatehand();
+
+    public Hand() {
+        generatehand();
     }
-    
-    public void generatehand()
-    {
+
+    public void generatehand() {
         for (int i = 0; i < 6; i++) {
             hand[i] = generatecard();
         }
-        
+
     }
-    
-    public void use(int slot)
-    {
+
+    public void use(int slot) {
         hand[slot] = draw();
     }
-    
-    public Card draw()
-    {
+
+    public Card draw() {
         Card c = null;
-        
+
         c = generatecard();
-        
+
         return c;
     }
-    
-    public Card generatecard()
-    {
-        Card card=null;
-        
-        
+
+    public Card generatecard() {
+        Card card = null;
+
         try {
-           card = dba.getRandomCard();
+            card = dba.getRandomCard();
         } catch (Exception ex) {
             Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         
-        
-         
+
 //         private int card_id;         //von der datenbank genierierte id
 //    private String name;              //name der karte
 //    private String bild_pfad;         //pfad zum bild
@@ -80,7 +71,6 @@ public class Hand {
 //    private int changes_player_bricks;
 //    private int changes_player_gems;
 //    private String description;
-        
         return card;
     }
 
@@ -91,6 +81,5 @@ public class Hand {
     public void setHand(Card[] hand) {
         this.hand = hand;
     }
-    
-  
+
 }
