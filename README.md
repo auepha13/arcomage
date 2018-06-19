@@ -13,4 +13,6 @@ You can play one Card per round.
 The cards have certain effects, you will get additional resources every round.
 You win if your Tower is 100 big or the other tower is at 0.
 
+Play the card with a left click and discard it with a right click.
+
 Have fun
