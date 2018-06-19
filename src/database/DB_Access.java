@@ -396,7 +396,7 @@ public class DB_Access {
             int changes_player_bricks = rs.getInt(31);
             int changes_player_gems = rs.getInt(32);
             int changes_player_tower = rs.getInt(33);
-            int changes_player_wall = rs.getInt(33);
+            int changes_player_wall = rs.getInt(34);
 
             BufferedImage imBuff = ImageIO.read(rs.getBinaryStream(4));
             picture = SwingFXUtils.toFXImage(imBuff, null);
