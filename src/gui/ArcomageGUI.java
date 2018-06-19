@@ -286,7 +286,7 @@ public class ArcomageGUI extends Application{
                                 case 1: ownRes = p.getGems();
                                 case 2: ownRes = p.getBeasts();
                             }
-                            if (ownRes < p.getHand()[j].getRequirement() && !cardUnavailable[j])
+                            if (ownRes > p.getHand()[j].getRequirement() && !cardUnavailable[j])
                             {
                                 tt = new TranslateTransition(Duration.millis(500), selCard[j]);
                                 tt.setToX(selCanvas.getWidth() / 2 - x[j] - card[j].getWidth() / 2);
@@ -297,11 +297,14 @@ public class ArcomageGUI extends Application{
                         
                         if (e.getButton() == MouseButton.SECONDARY)
                         {
-                            cardDiscard[j] = true;
-                            tt = new TranslateTransition(Duration.millis(500), selCard[j]);
-                            tt.setToX(selCanvas.getWidth() / 2 - x[j] - card[j].getWidth() / 2);
-                            tt.setToY(selCanvas.getHeight() / 2 - y[j] - card[j].getHeight() / 2);
-                            tt.play();
+                            if (!cardUnavailable[j])
+                            {
+                                cardDiscard[j] = true;
+                                tt = new TranslateTransition(Duration.millis(500), selCard[j]);
+                                tt.setToX(selCanvas.getWidth() / 2 - x[j] - card[j].getWidth() / 2);
+                                tt.setToY(selCanvas.getHeight() / 2 - y[j] - card[j].getHeight() / 2);
+                                tt.play();
+                            }
                         }
                     }
                 }
@@ -422,7 +425,14 @@ public class ArcomageGUI extends Application{
                     {
                         selGc.drawImage(selected, selCard[selectedCard].getX(), selCard[selectedCard].getY());
                     }
-                    if (cardCosts[j] > 10)
+                    int ownRes = 0;
+                    switch(p.getHand()[j].getType())
+                    {
+                        case 0: ownRes = p.getBricks();
+                        case 1: ownRes = p.getGems();
+                        case 2: ownRes = p.getBeasts();
+                    }
+                    if (ownRes < p.getHand()[j].getRequirement() || cardUnavailable[j])
                     {
                         selGc.drawImage(unavailable, selCard[j].getX(), selCard[j].getY());
                     }
