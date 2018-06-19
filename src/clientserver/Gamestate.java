@@ -8,6 +8,7 @@ package clientserver;
 import beans.Card;
 import beans.Player;
 import bl.Hand;
+import java.io.Serializable;
 
 /**
  *
@@ -20,31 +21,31 @@ public class Gamestate {
     private int tower;
     private int wall;
 
-    private int bestiary = 1;
-    private int quarry = 1;
-    private int magic = 1;
+    private int bestiary = 2;
+    private int quarry = 2;
+    private int magic = 2;
 
-    private int beasts = 0;
-    private int bricks = 0;
-    private int gems = 0;
+    private int beasts = 12;
+    private int bricks = 12;
+    private int gems = 12;
 
     private Hand h2;
     private int tower2;
     private int wall2;
 
-    private int bestiary2 = 1;
-    private int quarry2 = 1;
-    private int magic2 = 1;
+    private int bestiary2 = 2;
+    private int quarry2 = 2;
+    private int magic2 = 2;
 
-    private int beasts2 = 0;
-    private int bricks2 = 0;
-    private int gems2 = 0;
+    private int beasts2 = 12;
+    private int bricks2 = 12;
+    private int gems2 = 12;
 
     private boolean win;
 
     private int wintowerval = 0;
 
-    private int actualplayer;
+    private int actualplayer = 1;
 
     public Gamestate() {  //win value
         h = new Hand();
@@ -71,7 +72,7 @@ public class Gamestate {
 //        this.wall = wall;
 //        this.wintowerval = wintowerval;
 //    }
-    public void usecard(int handplace, int player) throws Notusableerror {
+    public void usecard(int handplace, int player) throws Notusableerror, NotRowError {
         //karte von spieler holen
         Card c = null;
         if (player == actualplayer) {
@@ -182,13 +183,38 @@ public class Gamestate {
                         quarry2 = 1;
                     }
                 }
+                
+                
 
                 if (c.getDamage_self() != 0) {
                     healthchangetower(c.getDamage_self());
                 }
+                
+                if (c.getChanges_enemy_tower()!= 0) {
+                    healthchangetower(c.getChanges_enemy_tower());
+                }
+                
+                if (c.getChanges_enemy_wall()!= 0) {
+                    healthchangewall(c.getChanges_enemy_wall());
+                }
+                
+                if (c.getDamage_enemy()!= 0) {
+                    healthchange(c.getDamage_enemy());
+                }
+                
+                if (c.getChanges_player_tower()!= 0) {
+                    healthchangetower2(c.getChanges_player_tower());
+                }
+                if (c.getChanges_player_wall()!= 0) {
+                    healthchangewall2(c.getChanges_player_wall());
+                }
+                
 
                 //add. turn
-                h.draw();
+                Card[] c1 = h.getHand();
+                c1[handplace] = h.draw();
+                h.setHand(c1);
+                endturn();
 
             } else {
                 c = h2.getHand()[handplace];
@@ -301,13 +327,35 @@ public class Gamestate {
                 }
 
                 if (c.getDamage_self() != 0) {
-                    healthchangetower(c.getDamage_self());
+                    healthchangetower2(c.getDamage_self());
                 }
                 
-                h2.draw();
+                if (c.getChanges_enemy_tower()!= 0) {
+                    healthchangetower2(c.getChanges_enemy_tower());
+                }
+                
+                if (c.getChanges_enemy_wall()!= 0) {
+                    healthchangewall2(c.getChanges_enemy_wall());
+                }
+                
+                if (c.getDamage_enemy()!= 0) {
+                    healthchange2(c.getDamage_enemy());
+                }
+                
+                if (c.getChanges_player_tower()!= 0) {
+                    healthchangetower(c.getChanges_player_tower());
+                }
+                if (c.getChanges_player_wall()!= 0) {
+                    healthchangewall(c.getChanges_player_wall());
+                }
+                
+                Card[] c1 = h2.getHand();
+                c1[handplace] = h2.draw();
+                h2.setHand(c1);
+                endturn();
             }
         } else {
-            throw new Notusableerror();
+            throw new NotRowError();
         }
 
 //    private int mod_enemy_bestiary;
@@ -323,10 +371,43 @@ public class Gamestate {
 //    private int changes_player_bricks;
 //    private int changes_player_gems;
 //hand von slot verwenden und neue ziehen
-        endturn();
     }
 
+    
+    
     public void healthchangetower(int value) {
+
+        tower2 += value;
+        if (tower2 >= wintowerval) {
+            endgame(true);
+        }
+        if (tower2 <= 0) {
+            endgame(false);
+        }
+    }
+
+    public void healthchangewall(int value) {
+
+        wall2+=value;
+        
+        if(wall2<0)
+        {
+            wall2=0;
+        }
+
+    }
+
+    public void healthchange(int value) {
+        tower2 += value;
+        if (tower2 >= wintowerval) {
+            endgame(true);
+        }
+        if (tower2 <= 0) {
+            endgame(false);
+        }
+    }
+    
+    public void healthchangetower2(int value) {
 
         tower += value;
         if (tower >= wintowerval) {
@@ -337,29 +418,18 @@ public class Gamestate {
         }
     }
 
-    public void healthchangewall(int value) {
+    public void healthchangewall2(int value) {
 
-        if (wall >= value) {
-            wall -= value;
-
-        } else {
-            if (wall < value && wall > 0) {
-
-            } else {
-                tower += value;
-                if (tower >= wintowerval) {
-                    endgame(true);
-                }
-                if (tower <= 0) {
-                    endgame(false);
-                }
-            }
-
+        wall+=value;
+        
+        if(wall<0)
+        {
+            wall=0;
         }
-
+        //System.out.println(wall);
     }
 
-    public void healthchange(int value) {
+    public void healthchange2(int value) {
         tower += value;
         if (tower >= wintowerval) {
             endgame(true);
@@ -370,6 +440,7 @@ public class Gamestate {
     }
 
     public void endturn() {
+        System.out.println(actualplayer);
         if (this.actualplayer == 1) {
             beasts +=bestiary;
             bricks +=quarry;
@@ -383,42 +454,26 @@ public class Gamestate {
             actualplayer = 1;
         }
         
+       
         //last played
     }
     
-//    public Player getplayer(int playernr)
-//    {
-//        Player p = null;
-//        
-////        private Hand h;
-////    private int tower;
-////    private int  wall;
-////    
-////    private int bestiary;
-////    private int quarry;
-////    private int magic;
-////    
-////    private int beasts;
-////    private int bricks;
-////    private int gems;
-////    
-////    private int bestiary2;
-////    private int quarry2;
-////    private int magic2;
-////    
-////    private int beasts2;
-////    private int bricks2;
-////    private int gems2;
-//        
-//        
-//        if(playernr == 1)
-//        {
-//            p = new Player(h,tower,wall,bestiary,quarry,magic,beasts,bricks,gems,bestiary2,quarry2,magic2,beasts2,bricks2,gems2,win);
-//        }else{
-//            
-//        }
-//        return p;
-//    }
+     public Player getPlayer(int pnr)
+     {
+         Player p = null;
+         if(pnr == 1)
+         {
+             p = new Player(h.getHand(), tower, wall, tower2, wall2, bestiary, quarry, magic, beasts, bricks, gems, bestiary2, quarry2, magic2, beasts2, bricks2, gems2, win, actualplayer);
+
+         }
+         else{
+             p= new Player(h2.getHand(),tower2, wall2, tower, wall, bestiary2, quarry2, magic2, beasts2, bricks2, gems2, bestiary, quarry, magic, beasts, bricks, gems, win, actualplayer);
+         }
+         return p;
+     }
+        
+    
+
     
     
 
@@ -592,5 +647,11 @@ public class Gamestate {
             super("Diese karte kann nicht gespielt werden");
         }
     }
+    
+    class NotRowError extends Exception {
 
+        NotRowError() {
+            super("Nicht an der Reihe.");
+        }
+    }
 }

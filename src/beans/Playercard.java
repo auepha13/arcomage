@@ -5,11 +5,13 @@
  */
 package beans;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Philipp
  */
-public class Playercard {
+public class Playercard implements Serializable{
     private int cardplace;
     private int playernr;
 

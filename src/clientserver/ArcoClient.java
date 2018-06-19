@@ -5,7 +5,7 @@
  */
 package clientserver;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import beans.Player;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -40,18 +40,20 @@ public class ArcoClient {
         
 
     }
-            public Gamestate sendRequest(Object request) throws IOException, ClassNotFoundException {
+            public Player sendRequest(Object request) throws IOException, ClassNotFoundException {
      
+            InetAddress addr = InetAddress.getLocalHost();
+            Socket socket = new Socket(addr, 9999);
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             oos.writeObject(request); //an server schicken und lesen
-            Gamestate gs = (Gamestate) ois.readObject();
+            Player p = (Player) ois.readObject();
             
             
             oos.close();
             ois.close();
             socket.close();
-            return gs;
+            return p;
              }
             
            

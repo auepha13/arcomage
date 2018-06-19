@@ -40,7 +40,7 @@
         <Property name="rows" type="int" value="4"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lbplayer">
           <Properties>
             <Property name="text" type="java.lang.String" value="Player"/>
           </Properties>
@@ -54,7 +54,7 @@
             <Property name="text" type="java.lang.String" value="Enemy"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="tfbricks">
+        <Component class="javax.swing.JLabel" name="lbbricks">
           <Properties>
             <Property name="text" type="java.lang.String" value="Bricks/Quarry:"/>
           </Properties>
@@ -63,47 +63,47 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
+        <Component class="javax.swing.JLabel" name="lbbricks2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Bricks/Quarry:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel15">
+        <Component class="javax.swing.JLabel" name="lbgems">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gems/Magic:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel14">
+        <Component class="javax.swing.JLabel" name="lbwall">
           <Properties>
             <Property name="text" type="java.lang.String" value="Wall:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel13">
+        <Component class="javax.swing.JLabel" name="lbwall2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Wall:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel12">
+        <Component class="javax.swing.JLabel" name="lbgems2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gems/Magic:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel9">
+        <Component class="javax.swing.JLabel" name="lbbeasts">
           <Properties>
             <Property name="text" type="java.lang.String" value="Beasts/Beastiary:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel16">
+        <Component class="javax.swing.JLabel" name="lbtower">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tower:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel17">
+        <Component class="javax.swing.JLabel" name="lbtower2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tower:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel18">
+        <Component class="javax.swing.JLabel" name="lbbeasts2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Beasts/Beastiary:"/>
           </Properties>

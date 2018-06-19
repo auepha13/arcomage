@@ -6,9 +6,15 @@
 package gui;
 
 import beans.Card;
+import beans.Player;
+import beans.Playercard;
+import clientserver.ArcoClient;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import static java.lang.Thread.interrupted;
+import static java.lang.Thread.sleep;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +51,6 @@ public class ArcomageGUI extends Application{
     //Sehr viele wichtige Variablen
     private int[] canvasSize = {1024, 768};
     private static String path = System.getProperty("user.dir") + File.separator + "src" + File.separator + "res" + File.separator;
-    private int[] i = {1, 1, 1, 1, 1, 1};
     private double[] x = {0, 0, 0, 0, 0, 0};
     private double[] y = {0, 0, 0, 0, 0, 0};
     private Image[] tower = new Image[4];
@@ -59,29 +64,137 @@ public class ArcomageGUI extends Application{
     private static Image discarded;
     private int selectedCard = -1;
     private TranslateTransition tt;
+    
+    
+    
+    private Card[] cards = new Card[6];
     private int[] healthTower = {25, 25};
     private int[] healthWall = {10, 10};
     private int[] cardCosts = {6, 2, 12, 35, 3, 2};
     private int[] resources = {2, 2, 2, 2, 2, 2};
     private int[] changes = {2, 2, 2, 2, 2, 2};
     private boolean[] cardDiscard = {false, false, false, false, false, false};
+    private boolean[] cardUnavailable = {false, false, false, false, false, false};
     
-    public static void main(String[] args) {
+    
+    
+    private ArcoClient c;
+    private int playernr =0;
+    private Player  p = null;
+    private ArcomageGUI.ClientThread ct;
+    
+    
+    
+    public ArcomageGUI()
+    {
+//        Application.launch(ArcomageGUI.class, "");
         
-        //Background
+        setplayernr(1);
+        
+        
+        c= new ArcoClient();
         try {
-            background = new Image(new FileInputStream(path + "00_gamescreen.jpg"));
-            selected = new Image(new FileInputStream(path + "card_mouseover.png"));
-            unavailable = new Image(new FileInputStream(path + "card_darkened.png"));
-            discarded = new Image(new FileInputStream(path + "discard_overlay.png"));
-        } catch (FileNotFoundException ex) {
+           actplayer(c.sendRequest(playernr));
+        } catch (IOException ex) {
+            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        launch(args);
+         ct = new ArcomageGUI.ClientThread();
+         ct.start();
     }
+    
+    public void setplayernr(int nr)
+    {
+        playernr= nr;
+//        lbplayer.setText("Player "+playernr);
+    }
+    
+    private void actplayer(Player p)
+    {
+        for (int j = 0; j < cards.length; j++) {
+            cards[j] = p.getHand()[j];
+            
+            template[j] = p.getHand()[j].getPicture();
+            String type = "";
+            switch(p.getHand()[j].getType())
+            {
+                case 0: type = "red"; break;
+                case 1: type = "blue"; break;
+                case 2: type = "green"; break;
+            }
+            try {
+                card[j] = new Image(new FileInputStream(path + type + ".jpg"));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        healthTower[0] = p.getTower();
+        healthTower[1] = p.getTower2();
+        healthWall[0] = p.getWall();
+        healthWall[1] = p.getWall();
+        resources[0] = p.getBricks();
+        resources[3] = p.getBricks2();
+        resources[1] = p.getMagic();
+        resources[4] = p.getMagic2();
+        resources[2] = p.getBeasts();
+        resources[5] = p.getBeasts2();
+        changes[0] = p.getQuarry();
+        changes[3] = p.getQuarry2();
+        changes[1] = p.getGems();
+        changes[4] = p.getGems2();
+        changes[2] = p.getBestiary();
+        changes[5] = p.getBestiary2();
+    }
+    
+    //thread machen!!!
+    class ClientThread extends Thread {
+
+        @Override
+        public void run() {
+            while (!interrupted()) {
+                try {
+                    sleep(100);
+                } catch (InterruptedException ex) {
+                    System.out.println("wait fehler");
+                }
+              
+                try {
+                    p = c.sendRequest(playernr);
+                } catch (IOException ex) {
+                    Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    actplayer(p);
+                    //System.out.println(p.getPlayernr());
+                    if(playernr!=p.getActualplayer())
+                    {
+                        for (int j = 0; j < cards.length; j++) {
+                            cardUnavailable[j] = true;
+                        }
+                    }
+                    else{
+                        for (int j = 0; j < cards.length; j++) {
+                            cardUnavailable[j] = false;
+                        }
+                    }
+                
+            
+        }
+    }
+    }
+    
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
     
     @Override
     public void start(Stage stage) throws Exception {
+        background = new Image(new FileInputStream(path + "00_gamescreen.jpg"));
+        selected = new Image(new FileInputStream(path + "card_mouseover.png"));
+        unavailable = new Image(new FileInputStream(path + "card_darkened.png"));
+        discarded = new Image(new FileInputStream(path + "discard_overlay.png"));
         Font text = Font.loadFont(getClass().getResourceAsStream("/fonts/Archtura.ttf"), 18);
         Font cost = Font.loadFont(getClass().getResourceAsStream("/fonts/Archtura.ttf"), 16);
         Font desc = Font.loadFont(getClass().getResourceAsStream("/fonts/Archtura.ttf"), 12);
@@ -108,7 +221,7 @@ public class ArcomageGUI extends Application{
         wall[1] = new Image(new FileInputStream(path + "01_wall_player.png"));
         
         //Erstellen aller Karten sollte mit entsprechenden Anfangskarten gemacht werden
-        for (int j = 0; j < i.length; j++) {
+        for (int j = 0; j < cards.length; j++) {
             card[j] = new Image(new FileInputStream(path + "red.png"));
             selCard[j] = new Rectangle((int)x[j], (int)y[j], (int)card[j].getWidth(), (int)card[j].getHeight());
             template[j] = new Image(new FileInputStream(path + "1.png"));
@@ -151,7 +264,7 @@ public class ArcomageGUI extends Application{
         selCanvas.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                for (int j = 0; j < i.length; j++) {
+                for (int j = 0; j < cards.length; j++) {
                     if (selCard[j].contains(e.getX(), e.getY()))
                     {
                         if (e.getButton() == MouseButton.PRIMARY)
@@ -188,7 +301,7 @@ public class ArcomageGUI extends Application{
             @Override
             public void handle(MouseEvent e) {
                 selectedCard = -1;
-                for (int j = 0; j < i.length; j++) {
+                for (int j = 0; j < cards.length; j++) {
                     if (selCard[j].contains(e.getX(), e.getY()))
                     {
                         selectedCard = j;
@@ -255,7 +368,7 @@ public class ArcomageGUI extends Application{
                 selGc.clearRect(0, canvasSize[1] - card[0].getHeight() - 3, canvasSize[0], canvasSize[1]);
                 
                 //Jede Karte wird neu gedrawed, wenn selektiert, wenn geklickt
-                for (int j = 0; j < i.length; j++) {
+                for (int j = 0; j < cards.length; j++) {
                     if (selCard[j].getTranslateX() == selCanvas.getWidth() / 2 - x[j] - card[j].getWidth() / 2 &&
                             selCard[j].getTranslateY() == selCanvas.getHeight() / 2 - y[j] - card[j].getHeight() / 2)
                     {
@@ -264,22 +377,14 @@ public class ArcomageGUI extends Application{
                         
                         if (!cardDiscard[j])
                         {
-                            useCard(new Card(i[j], "", "", 0, 0, false, false, 0, 0), j);
+                            useCard(j);
                         }
                         else
                         {
-                            discardCard(new Card(i[j], "", "", 0, 0, false, true, 0, 0), j);
+                            discardCard(j);
                         }
                         
                         cardDiscard[j] = false;
-                        i[j] = rand.nextInt(87) + 1;
-                        try {
-                            card[j] = new Image(new FileInputStream(path + ((i[j] < 30) ? "red.png" : (i[j] < 59) ? "blue.png" : "green.png")));
-                            template[j] = new Image(new FileInputStream(path + i[j] + ".png"));
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        
                     }
                     selCard[j].setX(x[j] + selCard[j].getTranslateX());
                     selCard[j].setY(y[j] + selCard[j].getTranslateY());
@@ -288,14 +393,18 @@ public class ArcomageGUI extends Application{
 //                    selCard[j].setLocation((int)x[j], (int)y[j]);
                     selGc.drawImage( template[j], selCard[j].getX() + 21, selCard[j].getY() + 55, 136, 80 );
                     selGc.setFont(text);
-                    selGc.fillText("Sample Text", selCard[j].getX() + 15, selCard[j].getY() + 33, selCard[0].getWidth() - 30);
+                    selGc.fillText(p.getHand()[j].getName(), selCard[j].getX() + 15, selCard[j].getY() + 33, selCard[0].getWidth() - 30);
                     selGc.setFont(desc);
-                    selGc.fillText("Sample Text Sample Text", selCard[j].getX() + 13, selCard[j].getY() + 165, selCard[0].getWidth() - 26);
-                    selGc.fillText("Sample", selCard[j].getX() + 13, selCard[j].getY() + 179, selCard[0].getWidth() - 26);
-                    selGc.fillText("Sample Text", selCard[j].getX() + 13, selCard[j].getY() + 193, selCard[0].getWidth() - 26);
+                    String[] splits = p.getHand()[j].getDescription().split("/n");
+                    int dist = 165;
+                    for (String split : splits) {
+                        System.out.println(split);
+                        selGc.fillText(split, selCard[j].getX() + 13, selCard[j].getY() + dist, selCard[0].getWidth() - 26);
+                        dist += 14;
+                    }
                     selGc.setFont(cost);
                     selGc.setTextAlign(TextAlignment.CENTER);
-                    selGc.fillText(cardCosts[j] + "", selCard[j].getX() + 147, selCard[j].getY() + 232);
+                    selGc.fillText(p.getHand()[j].getRequirement() + "", selCard[j].getX() + 147, selCard[j].getY() + 232);
                     selGc.setTextAlign(TextAlignment.LEFT);
                     if (j == selectedCard)
                     {
@@ -314,16 +423,6 @@ public class ArcomageGUI extends Application{
         }.start();
         
         stage.show();
-    }
-
-    // Feld mit allen KartenIDs des Players
-    
-    public int[] getI() {
-        return i;
-    }
-
-    public void setI(int[] i) {
-        this.i = i;
     }
 
     // Feld für TowerHealth, 0 = Player, 1 = Enemy
@@ -386,14 +485,26 @@ public class ArcomageGUI extends Application{
         this.cardDiscard = cardDiscard;
     }
     
-    public void useCard(Card card, int location)
+    public void useCard(int location)
     {
-        System.out.println("Used: " + card.getCard_id() + " an der Stelle: " + location);
+        try {
+            c.sendRequest(new Playercard(location, playernr));
+        } catch (IOException ex) {
+            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public void discardCard(Card card, int location)
+    public void discardCard(int location)
     {
-        System.out.println("Discarded: " + card.getCard_id() + " an der Stelle: " + location);
+        try {
+            c.sendRequest(new Playercard(location, playernr));
+        } catch (IOException ex) {
+            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

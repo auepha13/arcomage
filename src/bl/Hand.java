@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class Hand {
     
     public Card[] hand = new Card[6];
-    //private DB_Access dba = DB_Access.getInstance();
+    private DB_Access dba = DB_Access.getInstance();
     
     
     public Hand(){
@@ -53,12 +53,12 @@ public class Hand {
         
         
         try {
-           // card = dba.getRandomCard();
+           card = dba.getRandomCard();
         } catch (Exception ex) {
             Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-         //Card c = new Card(1,"Testcard","/test/asdf.png",1,);
+         
         
          
 //         private int card_id;         //von der datenbank genierierte id

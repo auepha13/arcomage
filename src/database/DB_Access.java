@@ -4,7 +4,6 @@
 package database;
 
 import beans.Card;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +17,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 
 /**
@@ -398,7 +399,7 @@ public class DB_Access {
             int changes_player_wall = rs.getInt(33);
 
             BufferedImage imBuff = ImageIO.read(rs.getBinaryStream(4));
-            picture = (Image) imBuff;
+            picture = SwingFXUtils.toFXImage(imBuff, null);
 
             card = new Card(card_id, name, description, picture, type, requirement, additional_turn, discardable, damage_enemy, damage_self, mod_enemy_bestiary, mod_enemy_quarry, mod_enemy_magic, mod_player_bestiary, mod_player_quarry, mod_player_magic, changes_enemy_beasts, changes_enemy_bricks, changes_enemy_gems, changes_enemy_tower, changes_enemy_wall, changes_player_beast, changes_player_bricks, changes_player_gems, changes_player_tower, changes_player_wall);
         }

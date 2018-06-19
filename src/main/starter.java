@@ -5,6 +5,7 @@
  */
 package main;
 
+import gui.ArcomageGUI;
 import gui.ClientGUI;
 import gui.ServerGUI;
 
@@ -14,11 +15,14 @@ import gui.ServerGUI;
  */
 public class starter {
     
+    
+    
     public static void main(String[] args) {
-        ServerGUI server =new ServerGUI();
-        server.setVisible(true);
-        server.btstart();
-        
+        ArcomageGUI gui = new ArcomageGUI();
+//        ServerGUI server =new ServerGUI();
+//        server.setVisible(true);
+//        server.btstart();
+//        
 //        ClientGUI c1=new ClientGUI();
 //        c1.setplayernr(1);
 //        ClientGUI c2=new ClientGUI();    
@@ -26,6 +30,9 @@ public class starter {
 //        c1.setVisible(true);
 //        c2.setVisible(true);
     }
+
     
+
+
     
 }

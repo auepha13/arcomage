@@ -6,16 +6,20 @@
 package beans;
 
 import bl.Hand;
+import java.io.Serializable;
 
 /**
  *
  * @author Philipp
  */
-public class Player {
+public class Player implements Serializable{
 
-    private Hand h;
+    public Card[] hand = new Card[6];
     private int tower;
     private int  wall;
+    
+    private int tower2;
+    private int  wall2;
     
     private int bestiary;
     private int quarry;
@@ -35,13 +39,14 @@ public class Player {
     
     private boolean win;
         
-    private int playernr;
+    private int actualplayer;
 
-    public Player(int nr, Hand h, int tower, int wall, int bestiary, int quarry, int magic, int beasts, int bricks, int gems, int bestiary2, int quarry2, int magic2, int beasts2, int bricks2, int gems2, boolean win) {
-        this.playernr = nr;
-        this.h = h;
+    public Player(Card[] h,int tower, int wall, int tower2, int wall2, int bestiary, int quarry, int magic, int beasts, int bricks, int gems, int bestiary2, int quarry2, int magic2, int beasts2, int bricks2, int gems2, boolean win, int actualplayer) {
+        hand = h;
         this.tower = tower;
         this.wall = wall;
+        this.tower2 = tower2;
+        this.wall2 = wall2;
         this.bestiary = bestiary;
         this.quarry = quarry;
         this.magic = magic;
@@ -55,27 +60,15 @@ public class Player {
         this.bricks2 = bricks2;
         this.gems2 = gems2;
         this.win = win;
+        this.actualplayer = actualplayer;
     }
 
-    
-    
-    
-    
-
-class Notusableerror extends Exception
-{
-    Notusableerror()
-    {
-        super("Diese karte kann nicht gespielt werden");
-    }
-}
-
-    public Hand getH() {
-        return h;
+    public Card[] getHand() {
+        return hand;
     }
 
-    public void setH(Hand h) {
-        this.h = h;
+    public void setHand(Card[] hand) {
+        this.hand = hand;
     }
 
     public int getTower() {
@@ -92,6 +85,22 @@ class Notusableerror extends Exception
 
     public void setWall(int wall) {
         this.wall = wall;
+    }
+
+    public int getTower2() {
+        return tower2;
+    }
+
+    public void setTower2(int tower2) {
+        this.tower2 = tower2;
+    }
+
+    public int getWall2() {
+        return wall2;
+    }
+
+    public void setWall2(int wall2) {
+        this.wall2 = wall2;
     }
 
     public int getBestiary() {
@@ -142,6 +151,54 @@ class Notusableerror extends Exception
         this.gems = gems;
     }
 
+    public int getBestiary2() {
+        return bestiary2;
+    }
+
+    public void setBestiary2(int bestiary2) {
+        this.bestiary2 = bestiary2;
+    }
+
+    public int getQuarry2() {
+        return quarry2;
+    }
+
+    public void setQuarry2(int quarry2) {
+        this.quarry2 = quarry2;
+    }
+
+    public int getMagic2() {
+        return magic2;
+    }
+
+    public void setMagic2(int magic2) {
+        this.magic2 = magic2;
+    }
+
+    public int getBeasts2() {
+        return beasts2;
+    }
+
+    public void setBeasts2(int beasts2) {
+        this.beasts2 = beasts2;
+    }
+
+    public int getBricks2() {
+        return bricks2;
+    }
+
+    public void setBricks2(int bricks2) {
+        this.bricks2 = bricks2;
+    }
+
+    public int getGems2() {
+        return gems2;
+    }
+
+    public void setGems2(int gems2) {
+        this.gems2 = gems2;
+    }
+
     public boolean isWin() {
         return win;
     }
@@ -150,13 +207,20 @@ class Notusableerror extends Exception
         this.win = win;
     }
 
-    public int getPlayernr() {
-        return playernr;
+    public int getActualplayer() {
+        return actualplayer;
     }
 
-    public void setPlayernr(int playernr) {
-        this.playernr = playernr;
+    public void setActualplayer(int actualplayer) {
+        this.actualplayer = actualplayer;
     }
+
+    
+    
+
+    
+
+ 
 
 
 }

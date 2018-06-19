@@ -8,11 +8,11 @@ package gui;
 import beans.Player;
 import beans.Playercard;
 import clientserver.ArcoClient;
-import clientserver.Gamestate;
 import database.DB_Access;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  *
@@ -27,10 +27,12 @@ public class ClientGUI extends javax.swing.JFrame {
     private ArcoClient c;
     private int playernr =0;
     private Player  p = null;
-    private Gamestate gs;
+    //private Gamestate gs;
+    private ClientThread ct;
     
-    public ClientGUI() {
+    public ClientGUI(int nr) {
         initComponents();
+        setplayernr(nr);
         
         
         c= new ArcoClient();
@@ -41,6 +43,12 @@ public class ClientGUI extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+         ct = new ClientThread();
+         ct.start();
+    }
+       
+    private ClientGUI() {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
@@ -48,20 +56,42 @@ public class ClientGUI extends javax.swing.JFrame {
     public void setplayernr(int nr)
     {
         playernr= nr;
+        lbplayer.setText("Player "+playernr);
     }
     
-    private void actplayer(Gamestate gs)
+    private void actplayer(Player p)
     {
-        if(playernr == 1)
-        {
-           //as gs die werte setzten zb. quarry
-        bt1.setText(gs.getH().getHand()[1].getName());
-        tfbricks.setText(gs.getBricks()+"");  
-        }
-        else{
-            
-        }
         
+           //as player die werte setzten zb. quarry
+        bt1.setText(p.getHand()[0].getName()+" "+p.getHand()[0].getDescription());//beschreibung hinzufügen
+//        System.out.println(p.getHand()[0].getName());
+//        System.out.println(p.getHand()[0].getDescription());
+//        System.out.println("Enemy_Tower:"+p.getHand()[0].getChanges_enemy_tower());
+//        System.out.println("Enemy_Wall:"+p.getHand()[0].getChanges_enemy_wall());
+//        System.out.println("Enemy_Damage:"+p.getHand()[0].getDamage_enemy());
+//        System.out.println("Player_Tower:"+p.getHand()[0].getChanges_player_tower());
+//        System.out.println("Player_Wall:"+p.getHand()[0].getChanges_player_wall());
+        
+        bt2.setText(p.getHand()[1].getName()+" "+p.getHand()[1].getDescription());
+        bt3.setText(p.getHand()[2].getName()+" "+p.getHand()[2].getDescription());
+        bt4.setText(p.getHand()[3].getName()+" "+p.getHand()[3].getDescription());
+        bt5.setText(p.getHand()[4].getName()+" "+p.getHand()[4].getDescription());
+        bt6.setText(p.getHand()[5].getName()+" "+p.getHand()[5].getDescription());
+       
+        lbbricks.setText("Bricks:"+p.getBricks()+"/ Quarry:"+p.getQuarry());  
+        lbgems.setText("Gems:"+p.getGems()+"/ Magic:"+p.getMagic());
+        lbbeasts.setText("Beasts:"+p.getBeasts()+"/ Beasiary:"+p.getBestiary());
+        
+        lbwall.setText("Wall:"+p.getWall());
+        System.out.println(p.getWall());
+        lbtower.setText("Tower:"+p.getTower());
+        
+        lbwall2.setText("Wall:"+p.getWall2());
+        lbtower2.setText("Tower:"+p.getTower2());
+       
+        lbbricks2.setText("Bricks:"+p.getBricks2()+"/ Quarry:"+p.getQuarry2());  
+        lbgems2.setText("Gems:"+p.getGems2()+"/ Magic:"+p.getMagic2());
+        lbbeasts2.setText("Beasts:"+p.getBeasts2()+"/ Beasiary:"+p.getBestiary2());
         
        
     }
@@ -73,18 +103,40 @@ public class ClientGUI extends javax.swing.JFrame {
         public void run() {
             while (!interrupted()) {
                 try {
-                    wait(100);
+                    sleep(100);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("wait fehler");
                 }
+              
                 try {
-                    gs = c.sendRequest(playernr);
-                    actplayer(gs);
+                    p = c.sendRequest(playernr);
                 } catch (IOException ex) {
                     Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                    actplayer(p);
+                    //System.out.println(p.getPlayernr());
+                    if(playernr!=p.getActualplayer())
+                    {
+                        bt1.setEnabled(false);
+                        bt2.setEnabled(false);
+                        bt3.setEnabled(false);
+                        bt4.setEnabled(false);
+                        bt5.setEnabled(false);
+                        bt6.setEnabled(false);
+                    }
+                    else{
+                        //if....
+                        //buton aus, wenn zu wenig resoucen
+                        bt1.setEnabled(true);
+                        bt2.setEnabled(true);
+                        bt3.setEnabled(true);
+                        bt4.setEnabled(true);
+                        bt5.setEnabled(true);
+                        bt6.setEnabled(true);
+                    }
+                
             
         }
     }
@@ -101,22 +153,22 @@ public class ClientGUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lbplayer = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        tfbricks = new javax.swing.JLabel();
+        lbbricks = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lbbricks2 = new javax.swing.JLabel();
+        lbgems = new javax.swing.JLabel();
+        lbwall = new javax.swing.JLabel();
+        lbwall2 = new javax.swing.JLabel();
+        lbgems2 = new javax.swing.JLabel();
+        lbbeasts = new javax.swing.JLabel();
+        lbtower = new javax.swing.JLabel();
+        lbtower2 = new javax.swing.JLabel();
+        lbbeasts2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         bt1 = new javax.swing.JButton();
         bt2 = new javax.swing.JButton();
@@ -132,45 +184,45 @@ public class ClientGUI extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.GridLayout(4, 4));
 
-        jLabel3.setText("Player");
-        jPanel2.add(jLabel3);
+        lbplayer.setText("Player");
+        jPanel2.add(lbplayer);
         jPanel2.add(jLabel4);
         jPanel2.add(jLabel5);
 
         jLabel7.setText("Enemy");
         jPanel2.add(jLabel7);
 
-        tfbricks.setText("Bricks/Quarry:");
-        jPanel2.add(tfbricks);
+        lbbricks.setText("Bricks/Quarry:");
+        jPanel2.add(lbbricks);
         jPanel2.add(jLabel10);
         jPanel2.add(jLabel11);
 
-        jLabel8.setText("Bricks/Quarry:");
-        jPanel2.add(jLabel8);
+        lbbricks2.setText("Bricks/Quarry:");
+        jPanel2.add(lbbricks2);
 
-        jLabel15.setText("Gems/Magic:");
-        jPanel2.add(jLabel15);
+        lbgems.setText("Gems/Magic:");
+        jPanel2.add(lbgems);
 
-        jLabel14.setText("Wall:");
-        jPanel2.add(jLabel14);
+        lbwall.setText("Wall:");
+        jPanel2.add(lbwall);
 
-        jLabel13.setText("Wall:");
-        jPanel2.add(jLabel13);
+        lbwall2.setText("Wall:");
+        jPanel2.add(lbwall2);
 
-        jLabel12.setText("Gems/Magic:");
-        jPanel2.add(jLabel12);
+        lbgems2.setText("Gems/Magic:");
+        jPanel2.add(lbgems2);
 
-        jLabel9.setText("Beasts/Beastiary:");
-        jPanel2.add(jLabel9);
+        lbbeasts.setText("Beasts/Beastiary:");
+        jPanel2.add(lbbeasts);
 
-        jLabel16.setText("Tower:");
-        jPanel2.add(jLabel16);
+        lbtower.setText("Tower:");
+        jPanel2.add(lbtower);
 
-        jLabel17.setText("Tower:");
-        jPanel2.add(jLabel17);
+        lbtower2.setText("Tower:");
+        jPanel2.add(lbtower2);
 
-        jLabel18.setText("Beasts/Beastiary:");
-        jPanel2.add(jLabel18);
+        lbbeasts2.setText("Beasts/Beastiary:");
+        jPanel2.add(lbbeasts2);
 
         getContentPane().add(jPanel2);
 
@@ -231,7 +283,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
         try {
-            c.sendRequest(new Playercard(1,playernr));
+            c.sendRequest(new Playercard(0,playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -241,7 +293,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2ActionPerformed
         try {
-            c.sendRequest(new Playercard(2,playernr));
+            c.sendRequest(new Playercard(1,playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -251,7 +303,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt3ActionPerformed
         try {
-            c.sendRequest(new Playercard(3,playernr));
+            c.sendRequest(new Playercard(2,playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -261,7 +313,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt4ActionPerformed
         try {
-            c.sendRequest(new Playercard(4,playernr));
+            c.sendRequest(new Playercard(3,playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -271,7 +323,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt5ActionPerformed
         try {
-            c.sendRequest(new Playercard(5,playernr));
+            c.sendRequest(new Playercard(4,playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -281,7 +333,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void bt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt6ActionPerformed
         try {
-            c.sendRequest(new Playercard(6,playernr));
+            c.sendRequest(new Playercard(5,playernr));
         } catch (IOException ex) {
             Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -335,21 +387,21 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel tfbricks;
+    private javax.swing.JLabel lbbeasts;
+    private javax.swing.JLabel lbbeasts2;
+    private javax.swing.JLabel lbbricks;
+    private javax.swing.JLabel lbbricks2;
+    private javax.swing.JLabel lbgems;
+    private javax.swing.JLabel lbgems2;
+    private javax.swing.JLabel lbplayer;
+    private javax.swing.JLabel lbtower;
+    private javax.swing.JLabel lbtower2;
+    private javax.swing.JLabel lbwall;
+    private javax.swing.JLabel lbwall2;
     // End of variables declaration//GEN-END:variables
 }

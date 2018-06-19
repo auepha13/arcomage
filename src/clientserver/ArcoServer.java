@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,19 +36,24 @@ public class ArcoServer extends BasicServer
         {
             Playercard pc = (Playercard)request;
             try {
-                gs.usecard(pc.getCardplace(),pc.getPlayernr());
+                try {
+                    gs.usecard(pc.getCardplace(),pc.getPlayernr());
+                } catch (Gamestate.NotRowError ex) {
+                    Logger.getLogger(ArcoServer.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (Gamestate.Notusableerror ex) {
                 Logger.getLogger(ArcoServer.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             
             
-            return gs;
+            return gs.getPlayer(pc.getPlayernr());
         }
         
         if(request instanceof Integer)
         {
-            return gs;
+            
+            return gs.getPlayer(Integer.parseInt(request+""));
         }
         
         
