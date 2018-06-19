@@ -25,9 +25,9 @@ public class Gamestate {
     private int quarry = 2;
     private int magic = 2;
 
-    private int beasts = 12;
-    private int bricks = 12;
-    private int gems = 12;
+    private int beasts = 120;
+    private int bricks = 120;
+    private int gems = 120;
 
     private Hand h2;
     private int tower2;
@@ -37,9 +37,9 @@ public class Gamestate {
     private int quarry2 = 2;
     private int magic2 = 2;
 
-    private int beasts2 = 12;
-    private int bricks2 = 12;
-    private int gems2 = 12;
+    private int beasts2 = 120;
+    private int bricks2 = 120;
+    private int gems2 = 120;
 
     private boolean win;
 
@@ -80,23 +80,32 @@ public class Gamestate {
                 c = h.getHand()[handplace];
                 //schaun ob einsetzbar
                 switch (c.getType()) {
-                    case 1:
+                    case 0:
                         if (beasts >= c.getRequirement()) {
                             beasts -= c.getRequirement();
                         }
+                        else{
+                             throw new Notusableerror();
+                        }
                         break;
-                    case 2:
+                    case 1:
                         if (bricks >= c.getRequirement()) {
                             bricks -= c.getRequirement();
                         }
+                        else{
+                             throw new Notusableerror();
+                        }
                         break;
-                    case 3:
+                    case 2:
                         if (gems >= c.getRequirement()) {
                             gems -= c.getRequirement();
                         }
-                        ;
+                        else{
+                             throw new Notusableerror();
+                        }
                         break;
                     default:
+                        System.out.println(c==null);
                         throw new Notusableerror();
                 }
 
@@ -184,10 +193,8 @@ public class Gamestate {
                     }
                 }
                 
-                
-
                 if (c.getDamage_self() != 0) {
-                    healthchangetower(c.getDamage_self());
+                    healthchange(c.getDamage_self());
                 }
                 
                 if (c.getChanges_enemy_tower()!= 0) {
@@ -199,7 +206,7 @@ public class Gamestate {
                 }
                 
                 if (c.getDamage_enemy()!= 0) {
-                    healthchange(c.getDamage_enemy());
+                    healthchange(c.getDamage_enemy()*(-1));
                 }
                 
                 if (c.getChanges_player_tower()!= 0) {
@@ -208,7 +215,6 @@ public class Gamestate {
                 if (c.getChanges_player_wall()!= 0) {
                     healthchangewall2(c.getChanges_player_wall());
                 }
-                
 
                 //add. turn
                 Card[] c1 = h.getHand();
@@ -220,21 +226,29 @@ public class Gamestate {
                 c = h2.getHand()[handplace];
 
                 switch (c.getType()) {
-                    case 1:
+                    case 0:
                         if (beasts2 >= c.getRequirement()) {
                             beasts2 -= c.getRequirement();
                         }
+                        else{
+                             throw new Notusableerror();
+                        }
                         break;
-                    case 2:
+                    case 1:
                         if (bricks2 >= c.getRequirement()) {
                             bricks2 -= c.getRequirement();
                         }
+                        else{
+                             throw new Notusableerror();
+                        }
                         break;
-                    case 3:
+                    case 2:
                         if (gems2 >= c.getRequirement()) {
                             gems2 -= c.getRequirement();
                         }
-                        ;
+                        else{
+                             throw new Notusableerror();
+                        }
                         break;
                     default:
                         throw new Notusableerror();
@@ -306,9 +320,9 @@ public class Gamestate {
                 }
 
                 if (c.getMod_enemy_bestiary() != 0) {
-                    quarry += c.getChanges_enemy_gems();
-                    if (quarry < 1) {
-                        quarry = 1;
+                    beasts += c.getMod_enemy_bestiary();
+                    if (beasts < 1) {
+                        beasts = 1;
                     }
                 }
 
@@ -339,7 +353,7 @@ public class Gamestate {
                 }
                 
                 if (c.getDamage_enemy()!= 0) {
-                    healthchange2(c.getDamage_enemy());
+                    healthchange2(c.getDamage_enemy()*(-1));
                 }
                 
                 if (c.getChanges_player_tower()!= 0) {
