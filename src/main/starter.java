@@ -6,7 +6,7 @@
 package main;
 
 import gui.ArcomageGUI;
-import gui.ClientGUI;
+import old.ClientGUI;
 import gui.ServerGUI;
 import java.util.logging.Level;
 import java.util.logging.Logger;

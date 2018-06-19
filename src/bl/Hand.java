@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * manages everything about the 6 cards in your hand
  * @author Philipp
  */
 public class Hand {
@@ -35,6 +35,12 @@ public class Hand {
         hand[slot] = draw();
     }
 
+  
+    /**
+     * 
+     * 
+     * @return new Card object
+     */
     public Card draw() {
         Card c = null;
 
@@ -43,15 +49,27 @@ public class Hand {
         return c;
     }
 
+    /**
+     * 
+     * @return new CARD OBJECT
+     */
     public Card generatecard() {
         Card card = null;
+       // System.out.println("generate");
 
-        try {
-            card = dba.getRandomCard();
-        } catch (Exception ex) {
-            Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        do {
 
+            try {
+                card = dba.getRandomCard();
+            } catch (Exception ex) {
+                Logger.getLogger(Hand.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //not implemented yet
+           // System.out.println(card.getDescription());
+        } while (card.getDescription().toLowerCase().contains("additional turn")|| card.getDescription().toLowerCase().contains("if")|| card.getDescription().toLowerCase().contains("adjusts") );
+
+       // System.out.println("");
+        
 //         private int card_id;         //von der datenbank genierierte id
 //    private String name;              //name der karte
 //    private String bild_pfad;         //pfad zum bild

@@ -346,6 +346,15 @@ public class ArcomageGUI extends Application{
                     gc.fillText("Player", 20, 25, 105);
                     gc.fillText("Enemy", canvasSize[0] - 132, 25, 105);
                     
+////                    //Player/Enemy-Resources
+////                    gc.fillText(resources[0] + "", 25, 151);
+////                    gc.fillText(resources[1] + "", 25, 279);
+////                    gc.fillText(resources[2] + "", 25, 407);
+////                    gc.fillText(resources[3] + "", canvasSize[0] - 127, 151);
+////                    gc.fillText(resources[4] + "", canvasSize[0] - 127, 279);
+////                    gc.fillText(resources[5] + "", canvasSize[0] - 127, 407);
+                    
+                    
                     //Player/Enemy-Resources
                     gc.fillText(resources[0] + "", 25, 151);
                     gc.fillText(resources[1] + "", 25, 279);
@@ -354,13 +363,6 @@ public class ArcomageGUI extends Application{
                     gc.fillText(resources[4] + "", canvasSize[0] - 127, 279);
                     gc.fillText(resources[5] + "", canvasSize[0] - 127, 407);
                     
-                    //Player/Enemy-Health
-                    gc.setTextAlign(TextAlignment.CENTER);
-                    gc.fillText(healthTower[0] + "", 200, 505);
-                    gc.fillText(healthWall[0] + "", 400, 505);
-                    gc.fillText(healthTower[1] + "", canvasSize[0] - 200, 505);
-                    gc.fillText(healthWall[1] + "", canvasSize[0] - 400, 505);
-                    gc.setTextAlign(TextAlignment.LEFT);
                     
                     //Player/Enemy-Changes
                     gc.setFont(numberLarge);
@@ -372,6 +374,18 @@ public class ArcomageGUI extends Application{
                     gc.fillText(changes[3] + "", canvasSize[0] - 124, 113);
                     gc.fillText(changes[4] + "", canvasSize[0] - 124, 241);
                     gc.fillText(changes[5] + "", canvasSize[0] - 124, 369);
+                    
+                    
+                    
+                    //Player/Enemy-Health
+                    gc.setTextAlign(TextAlignment.CENTER);
+                    gc.fillText(healthTower[0] + "", 200, 505);
+                    gc.fillText(healthWall[0] + "", 400, 505);
+                    gc.fillText(healthTower[1] + "", canvasSize[0] - 200, 505);
+                    gc.fillText(healthWall[1] + "", canvasSize[0] - 400, 505);
+                    gc.setTextAlign(TextAlignment.LEFT);
+                    
+                    
                 
                 //Türme und Walls werden geladen
                 selGc.drawImage(tower[0], canvasSize[0] - 250 - tower[0].getWidth(), canvasSize[1] - card[0].getHeight() - 3 - tower[0].getHeight() * healthTower[1] / 100);

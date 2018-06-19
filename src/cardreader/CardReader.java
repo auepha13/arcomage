@@ -24,7 +24,9 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 /**
- *
+ * This class was used to read the card data from an csv file
+ * the csv was created from a xml.
+ * 
  * @author Stefan
  */
 public class CardReader {

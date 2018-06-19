@@ -86,7 +86,7 @@ public class ArcomageGUI2 extends Application{
     
     public ArcomageGUI2()
     {
-//        Application.launch(ArcomageGUI.class, "");
+//        Application.launch(ArcomageGUI2.class, "");
         
         setplayernr(2);
         
@@ -114,7 +114,7 @@ public class ArcomageGUI2 extends Application{
         for (int j = 0; j < cards.length; j++) {
             cards[j] = p.getHand()[j];
             
-            template[j] = p.getHand()[j].getPicture();
+            //template[j] = p.getHand()[j].getPicture();
             String type = "";
             switch(p.getHand()[j].getType())
             {
@@ -124,6 +124,7 @@ public class ArcomageGUI2 extends Application{
             }
             try {
                 card[j] = new Image(new FileInputStream(path + type + ".png"));
+                template[j] = new Image(new FileInputStream(path + p.getHand()[j].getCard_id() + ".png"));
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -144,6 +145,18 @@ public class ArcomageGUI2 extends Application{
         changes[4] = p.getMagic2();
         changes[2] = p.getBestiary();
         changes[5] = p.getBestiary2();
+        if(playernr!=p.getActualplayer())
+        {
+            for (int i = 0; i < cards.length; i++) {
+                cardUnavailable[i] = true;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < cards.length; i++) {
+                cardUnavailable[i] = false;
+            }
+        }
     }
     
     //thread machen!!!
@@ -165,23 +178,22 @@ public class ArcomageGUI2 extends Application{
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    actplayer(p);
-                    //System.out.println(p.getPlayernr());
-                    if(playernr!=p.getActualplayer())
-                    {
-                        for (int j = 0; j < cards.length; j++) {
-                            cardUnavailable[j] = true;
-                        }
+                actplayer(p);
+                //System.out.println(p.getPlayernr());
+                if(playernr!=p.getActualplayer())
+                {
+                    for (int j = 0; j < cards.length; j++) {
+                        cardUnavailable[j] = true;
                     }
-                    else{
-                        for (int j = 0; j < cards.length; j++) {
-                            cardUnavailable[j] = false;
-                        }
+                }
+                else
+                {
+                    for (int j = 0; j < cards.length; j++) {
+                        cardUnavailable[j] = false;
                     }
-                
-            
+                }
+            }
         }
-    }
     }
     
 //    public static void main(String[] args) {
@@ -224,9 +236,6 @@ public class ArcomageGUI2 extends Application{
             card[j] = new Image(new FileInputStream(path + "red.png"));
             selCard[j] = new Rectangle((int)x[j], (int)y[j], (int)card[j].getWidth(), (int)card[j].getHeight());
             template[j] = new Image(new FileInputStream(path + "1.png"));
-            
-            //template[j] = new Image(new FileInputStream(path + p.getHand()[j].getCard_id() + ".png")); vl hilft des
-            
             x[j] = (canvasSize[0] - card[j].getWidth()) / 5 * j;
             y[j] = canvasSize[1] - card[j].getHeight();
         }
@@ -260,8 +269,6 @@ public class ArcomageGUI2 extends Application{
         selGc.setFill( Color.WHITE );
         selGc.setFont(numberTiny);
         
-        Random rand = new Random();
-        
         //Methode spielt Animation bei Klick ab, Discard sollte auf Secondary erscheinen
         selCanvas.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
@@ -271,27 +278,32 @@ public class ArcomageGUI2 extends Application{
                     {
                         if (e.getButton() == MouseButton.PRIMARY)
                         {
-                            if (cardCosts[j] < 10)
+                            int ownRes = 0;
+                            switch(p.getHand()[j].getType())
+                            {
+                                case 0: ownRes = p.getBricks();
+                                case 1: ownRes = p.getGems();
+                                case 2: ownRes = p.getBeasts();
+                            }
+                            if (ownRes > p.getHand()[j].getRequirement() && !cardUnavailable[j])
                             {
                                 tt = new TranslateTransition(Duration.millis(500), selCard[j]);
                                 tt.setToX(selCanvas.getWidth() / 2 - x[j] - card[j].getWidth() / 2);
                                 tt.setToY(selCanvas.getHeight() / 2 - y[j] - card[j].getHeight() / 2);
                                 tt.play();
-                                
-                                healthTower[0] = rand.nextInt(101);
-                                healthTower[1] = rand.nextInt(101);
-                                healthWall[0] = rand.nextInt(101);
-                                healthWall[1] = rand.nextInt(101);
                             }
                         }
                         
                         if (e.getButton() == MouseButton.SECONDARY)
                         {
-                            cardDiscard[j] = true;
-                            tt = new TranslateTransition(Duration.millis(500), selCard[j]);
-                            tt.setToX(selCanvas.getWidth() / 2 - x[j] - card[j].getWidth() / 2);
-                            tt.setToY(selCanvas.getHeight() / 2 - y[j] - card[j].getHeight() / 2);
-                            tt.play();
+                            if (!cardUnavailable[j])
+                            {
+                                cardDiscard[j] = true;
+                                tt = new TranslateTransition(Duration.millis(500), selCard[j]);
+                                tt.setToX(selCanvas.getWidth() / 2 - x[j] - card[j].getWidth() / 2);
+                                tt.setToY(selCanvas.getHeight() / 2 - y[j] - card[j].getHeight() / 2);
+                                tt.play();
+                            }
                         }
                     }
                 }
@@ -412,7 +424,14 @@ public class ArcomageGUI2 extends Application{
                     {
                         selGc.drawImage(selected, selCard[selectedCard].getX(), selCard[selectedCard].getY());
                     }
-                    if (cardCosts[j] > 10)
+                    int ownRes = 0;
+                    switch(p.getHand()[j].getType())
+                    {
+                        case 0: ownRes = p.getBricks();
+                        case 1: ownRes = p.getGems();
+                        case 2: ownRes = p.getBeasts();
+                    }
+                    if (ownRes < p.getHand()[j].getRequirement() || cardUnavailable[j])
                     {
                         selGc.drawImage(unavailable, selCard[j].getX(), selCard[j].getY());
                     }
@@ -425,66 +444,6 @@ public class ArcomageGUI2 extends Application{
         }.start();
         
         stage.show();
-    }
-
-    // Feld für TowerHealth, 0 = Player, 1 = Enemy
-    
-    public int[] getHealthTower() {
-        return healthTower;
-    }
-
-    public void setHealthTower(int[] healthTower) {
-        this.healthTower = healthTower;
-    }
-
-    // Feld für WallHealth, 0 = Player, 1 = Enemy
-    
-    public int[] getHealthWall() {
-        return healthWall;
-    }
-
-    public void setHealthWall(int[] healthWall) {
-        this.healthWall = healthWall;
-    }
-
-    // Feld für die Kosten aller Karten
-    
-    public int[] getCardCosts() {
-        return cardCosts;
-    }
-    
-    public void setCardCosts(int[] cardCosts) {
-        this.cardCosts = cardCosts;
-    }
-
-    // Feld für die Resourcen, 0-2 Player, 3-5 Enemy
-    
-    public int[] getResources() {
-        return resources;
-    }
-
-    public void setResources(int[] resources) {
-        this.resources = resources;
-    }
-
-    // Feld für Changes, 0-2 Player, 3-5 Enemy
-    
-    public int[] getChanges() {
-        return changes;
-    }
-
-    public void setChanges(int[] changes) {
-        this.changes = changes;
-    }
-
-    //Feld für Discard Karte des Players
-    
-    public boolean[] getCardDiscard() {
-        return cardDiscard;
-    }
-
-    public void setCardDiscard(boolean[] cardDiscard) {
-        this.cardDiscard = cardDiscard;
     }
     
     public void useCard(int location)

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package old;
 
 import beans.Player;
 import beans.Playercard;
@@ -56,7 +56,7 @@ public class ClientGUI extends javax.swing.JFrame {
     private void actplayer(Player p) {
 
         //as player die werte setzten zb. quarry
-        bt1.setText(+p.getHand()[0].getRequirement()+" "+ p.getHand()[0].getDescription());//beschreibung hinzufügen
+        bt1.setText(p.getHand()[0].getDescription());//beschreibung hinzufügen
 //        System.out.println(p.getHand()[0].getName());
 //        System.out.println(p.getHand()[0].getDescription());
 //        System.out.println("Enemy_Tower:"+p.getHand()[0].getChanges_enemy_tower());
@@ -65,11 +65,11 @@ public class ClientGUI extends javax.swing.JFrame {
 //        System.out.println("Player_Tower:"+p.getHand()[0].getChanges_player_tower());
 //        System.out.println("Player_Wall:"+p.getHand()[0].getChanges_player_wall());
 
-        bt2.setText(p.getHand()[1].getName() + " " + p.getHand()[1].getDescription());
-        bt3.setText(p.getHand()[2].getName() + " " + p.getHand()[2].getDescription());
-        bt4.setText(p.getHand()[3].getName() + " " + p.getHand()[3].getDescription());
-        bt5.setText(p.getHand()[4].getName() + " " + p.getHand()[4].getDescription());
-        bt6.setText(p.getHand()[5].getName() + " " + p.getHand()[5].getDescription());
+        bt2.setText(p.getHand()[1].getDescription());
+        bt3.setText(p.getHand()[2].getDescription());
+        bt4.setText(p.getHand()[3].getDescription());
+        bt5.setText(p.getHand()[4].getDescription());
+        bt6.setText(p.getHand()[5].getDescription());
 
         lbbricks.setText("Bricks:" + p.getBricks() + "/ Quarry:" + p.getQuarry());
         lbgems.setText("Gems:" + p.getGems() + "/ Magic:" + p.getMagic());

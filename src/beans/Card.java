@@ -5,7 +5,10 @@ import javafx.scene.image.Image;
 
 
 
-//All variables for the card object
+/**
+ * This is class manages all the data from a card
+ * @author Stefan
+ */
 public class Card implements Serializable{
 
     public Card(int card_id, int mod_enemy_bestiary, int mod_enemy_quarry, int mod_enemy_magic, int mod_player_bestiary, int mod_player_quarry, int mod_player_magic, int changes_enemy_beasts, int changes_enemy_bricks, int changes_enemy_gems, int changes_enemy_tower, int changes_enemy_wall, int changes_player_beasts, int changes_player_bricks, int changes_player_gems, int changes_player_tower, int changes_player_wall) {

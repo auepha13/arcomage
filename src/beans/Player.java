@@ -9,7 +9,7 @@ import bl.Hand;
 import java.io.Serializable;
 
 /**
- *
+ *This class manages all the data from a Player
  * @author Philipp
  */
 public class Player implements Serializable{

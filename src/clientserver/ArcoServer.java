@@ -62,6 +62,10 @@ public class ArcoServer extends BasicServer {
         super(i, t);
     }
 
+    /**
+     * 
+     * starts the server
+     */
     @Override
     public void startServer() {
         gs = new Gamestate();
@@ -70,6 +74,9 @@ public class ArcoServer extends BasicServer {
 
     }
 
+    /**
+     * stops the server
+     */
     @Override
     public void stopServer() {
         super.stopServer(); //To change body of generated methods, choose Tools | Templates.

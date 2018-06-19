@@ -8,37 +8,57 @@ package clientserver;
 import beans.Card;
 import beans.Player;
 import bl.Hand;
+import javax.swing.JOptionPane;
 
 /**
- *
+ *manages all game variables
  * @author Philipp
  */
 public class Gamestate {
     //alles wichtige für beide spieler von Player holen
 
+    /*
+    Zum Testen, ob Felder richtig engeordnet sind
     private Hand h;
     private int tower;
     private int wall;
-
-    private int bestiary = 2;
-    private int quarry = 2;
-    private int magic = 2;
-
-    private int beasts = 10;
-    private int bricks = 10;
-    private int gems = 10;
+    private int quarry = 1;
+    private int bricks = 2;
+    private int magic = 3;
+    private int gems = 4;
+    private int bestiary = 5;
+    private int beasts = 6;
 
     private Hand h2;
     private int tower2;
     private int wall2;
-
-    private int bestiary2 = 2;
-    private int quarry2 = 2;
-    private int magic2 = 2;
-
-    private int beasts2 = 10;
-    private int bricks2 = 10;
+    private int quarry2 = 7;
+    private int bricks2 = 8;
+    private int magic2 = 9;
     private int gems2 = 10;
+    private int bestiary2 = 11;
+    private int beasts2 = 12;
+
+     */
+    private Hand h;
+    private int tower;
+    private int wall;
+    private int quarry = 2;
+    private int bricks = 10;
+    private int magic = 2;
+    private int gems = 10;
+    private int bestiary = 2;
+    private int beasts = 10;
+
+    private Hand h2;
+    private int tower2;
+    private int wall2;
+    private int quarry2 = 2;
+    private int bricks2 = 10;
+    private int magic2 = 2;
+    private int gems2 = 10;
+    private int bestiary2 = 2;
+    private int beasts2 = 10;
 
     private boolean win;
 
@@ -51,7 +71,7 @@ public class Gamestate {
         tower = 50;
         wall = 0;
         wintowerval = 100;
-        
+
         h2 = new Hand();
         tower2 = 50;
         wall2 = 0;
@@ -71,6 +91,17 @@ public class Gamestate {
 //        this.wall = wall;
 //        this.wintowerval = wintowerval;
 //    }
+    
+    
+  
+    /**
+     * 
+     * when a card is played
+     * @param handplace where the card is in the hand
+     * @param player number 1 or 2
+     * @throws clientserver.Gamestate.Notusableerror
+     * @throws clientserver.Gamestate.NotRowError 
+     */
     public void usecard(int handplace, int player) throws Notusableerror, NotRowError {
         //karte von spieler holen
         Card c = null;
@@ -79,36 +110,33 @@ public class Gamestate {
                 c = h.getHand()[handplace];
                 //schaun ob einsetzbar
                 switch (c.getType()) {
-                    case 0:
+                    case 2:
                         if (beasts >= c.getRequirement()) {
                             beasts -= c.getRequirement();
+                        } else {
+                            throw new Notusableerror();
                         }
-                        else{
-                             throw new Notusableerror();
+                        break;
+                    case 0:
+                        if (bricks >= c.getRequirement()) {
+                            bricks -= c.getRequirement();
+                        } else {
+                            throw new Notusableerror();
                         }
                         break;
                     case 1:
-                        if (bricks >= c.getRequirement()) {
-                            bricks -= c.getRequirement();
-                        }
-                        else{
-                             throw new Notusableerror();
-                        }
-                        break;
-                    case 2:
                         if (gems >= c.getRequirement()) {
                             gems -= c.getRequirement();
-                        }
-                        else{
-                             throw new Notusableerror();
+                        } else {
+                            throw new Notusableerror();
                         }
                         break;
                     default:
-                        System.out.println(c==null);
+                        System.out.println(c == null);
                         throw new Notusableerror();
                 }
 
-                if (c.getChanges_player_beasts()!= 0) {
+                if (c.getChanges_player_beasts() != 0) {
                     beasts += c.getChanges_player_beasts();
                     if (beasts < 0) {
                         beasts = 0;
@@ -191,27 +219,27 @@ public class Gamestate {
                         quarry2 = 1;
                     }
                 }
-                
+
                 if (c.getDamage_self() != 0) {
                     healthchange(c.getDamage_self());
                 }
-                
-                if (c.getChanges_enemy_tower()!= 0) {
+
+                if (c.getChanges_enemy_tower() != 0) {
                     healthchangetower(c.getChanges_enemy_tower());
                 }
-                
-                if (c.getChanges_enemy_wall()!= 0) {
+
+                if (c.getChanges_enemy_wall() != 0) {
                     healthchangewall(c.getChanges_enemy_wall());
                 }
-                
-                if (c.getDamage_enemy()!= 0) {
-                    healthchange(c.getDamage_enemy()*(-1));
+
+                if (c.getDamage_enemy() != 0) {
+                    healthchange(c.getDamage_enemy() * (-1));
                 }
-                
-                if (c.getChanges_player_tower()!= 0) {
+
+                if (c.getChanges_player_tower() != 0) {
                     healthchangetower2(c.getChanges_player_tower());
                 }
-                if (c.getChanges_player_wall()!= 0) {
+                if (c.getChanges_player_wall() != 0) {
                     healthchangewall2(c.getChanges_player_wall());
                 }
 
@@ -225,37 +253,32 @@ public class Gamestate {
                 c = h2.getHand()[handplace];
 
                 switch (c.getType()) {
-                    case 0:
+                    case 2:
                         if (beasts2 >= c.getRequirement()) {
                             beasts2 -= c.getRequirement();
+                        } else {
+                            throw new Notusableerror();
                         }
-                        else{
-                             throw new Notusableerror();
+                        break;
+                    case 0:
+                        if (bricks2 >= c.getRequirement()) {
+                            bricks2 -= c.getRequirement();
+                        } else {
+                            throw new Notusableerror();
                         }
                         break;
                     case 1:
-                        if (bricks2 >= c.getRequirement()) {
-                            bricks2 -= c.getRequirement();
-                        }
-                        else{
-                             throw new Notusableerror();
-                        }
-                        break;
-                    case 2:
                         if (gems2 >= c.getRequirement()) {
                             gems2 -= c.getRequirement();
-                        }
-                        else{
-                             throw new Notusableerror();
+                        } else {
+                            throw new Notusableerror();
                         }
                         break;
                     default:
                         throw new Notusableerror();
                 }
-                
-                
-                
-                 if (c.getChanges_player_beasts()!= 0) {
+
+                if (c.getChanges_player_beasts() != 0) {
                     beasts2 += c.getChanges_player_beasts();
                     if (beasts2 < 0) {
                         beasts2 = 0;
@@ -342,26 +365,26 @@ public class Gamestate {
                 if (c.getDamage_self() != 0) {
                     healthchangetower2(c.getDamage_self());
                 }
-                
-                if (c.getChanges_enemy_tower()!= 0) {
+
+                if (c.getChanges_enemy_tower() != 0) {
                     healthchangetower2(c.getChanges_enemy_tower());
                 }
-                
-                if (c.getChanges_enemy_wall()!= 0) {
+
+                if (c.getChanges_enemy_wall() != 0) {
                     healthchangewall2(c.getChanges_enemy_wall());
                 }
-                
-                if (c.getDamage_enemy()!= 0) {
-                    healthchange2(c.getDamage_enemy()*(-1));
+
+                if (c.getDamage_enemy() != 0) {
+                    healthchange2(c.getDamage_enemy() * (-1));
                 }
-                
-                if (c.getChanges_player_tower()!= 0) {
+
+                if (c.getChanges_player_tower() != 0) {
                     healthchangetower(c.getChanges_player_tower());
                 }
-                if (c.getChanges_player_wall()!= 0) {
+                if (c.getChanges_player_wall() != 0) {
                     healthchangewall(c.getChanges_player_wall());
                 }
-                
+
                 Card[] c1 = h2.getHand();
                 c1[handplace] = h2.draw();
                 h2.setHand(c1);
@@ -386,8 +409,6 @@ public class Gamestate {
 //hand von slot verwenden und neue ziehen
     }
 
-    
-    
     public void healthchangetower(int value) {
 
         tower2 += value;
@@ -401,11 +422,10 @@ public class Gamestate {
 
     public void healthchangewall(int value) {
 
-        wall2+=value;
-        
-        if(wall2<0)
-        {
-            wall2=0;
+        wall2 += value;
+
+        if (wall2 < 0) {
+            wall2 = 0;
         }
 
     }
@@ -419,7 +439,7 @@ public class Gamestate {
             endgame(false);
         }
     }
-    
+
     public void healthchangetower2(int value) {
 
         tower += value;
@@ -433,11 +453,10 @@ public class Gamestate {
 
     public void healthchangewall2(int value) {
 
-        wall+=value;
-        
-        if(wall<0)
-        {
-            wall=0;
+        wall += value;
+
+        if (wall < 0) {
+            wall = 0;
         }
         //System.out.println(wall);
     }
@@ -453,42 +472,33 @@ public class Gamestate {
     }
 
     public void endturn() {
-        System.out.println("player "+actualplayer);
+        System.out.println("player " + actualplayer);
         if (this.actualplayer == 1) {
-            beasts +=bestiary;
-            bricks +=quarry;
-            gems +=magic;
-                    
+            beasts += bestiary;
+            bricks += quarry;
+            gems += magic;
+
             actualplayer = 2;
         } else {
-            beasts2 +=bestiary2;
-            bricks2 +=quarry2;
-            gems2 +=magic2;
+            beasts2 += bestiary2;
+            bricks2 += quarry2;
+            gems2 += magic2;
             actualplayer = 1;
         }
-        
-       
+
         //last played
     }
-    
-     public Player getPlayer(int pnr)
-     {
-         Player p = null;
-         if(pnr == 1)
-         {
-             p = new Player(h.getHand(), tower, wall, tower2, wall2, bestiary, quarry, magic, beasts, bricks, gems, bestiary2, quarry2, magic2, beasts2, bricks2, gems2, win, actualplayer);
 
-         }
-         else{
-             p= new Player(h2.getHand(),tower2, wall2, tower, wall, bestiary2, quarry2, magic2, beasts2, bricks2, gems2, bestiary, quarry, magic, beasts, bricks, gems, win, actualplayer);
-         }
-         return p;
-     }
-        
-    
+    public Player getPlayer(int pnr) {
+        Player p = null;
+        if (pnr == 1) {
+            p = new Player(h.getHand(), tower, wall, tower2, wall2, bestiary, quarry, magic, beasts, bricks, gems, bestiary2, quarry2, magic2, beasts2, bricks2, gems2, win, actualplayer);
 
-    
-    
+        } else {
+            p = new Player(h2.getHand(), tower2, wall2, tower, wall, bestiary2, quarry2, magic2, beasts2, bricks2, gems2, bestiary, quarry, magic, beasts, bricks, gems, win, actualplayer);
+        }
+        return p;
+    }
 
     public void endgame(boolean w) {
         win = w;//... todo falls gewonnen
@@ -660,7 +670,7 @@ public class Gamestate {
             super("Diese karte kann nicht gespielt werden");
         }
     }
-    
+
     class NotRowError extends Exception {
 
         NotRowError() {

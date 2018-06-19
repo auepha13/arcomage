@@ -6,7 +6,7 @@
 package beans;
 
 /**
- *
+ *this class should determinate the winner
  * @author Philipp
  */
 public class Endgame {

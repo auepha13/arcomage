@@ -20,13 +20,13 @@ import java.util.logging.Logger;
  * @author Philipp
  */
 public class ArcoClient {
-    private  InetAddress ADDR = null ;  
+
+    private InetAddress ADDR = null;
     private Socket socket = null;
-    private String userid="";
-    
-    public ArcoClient()
-    {
-     
+    private String userid = "";
+
+    public ArcoClient() {
+
         try {
             ADDR = InetAddress.getLocalHost();
         } catch (UnknownHostException ex) {
@@ -37,24 +37,23 @@ public class ArcoClient {
         } catch (IOException ex) {
             Logger.getLogger(ArcoClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
     }
-            public Player sendRequest(Object request) throws IOException, ClassNotFoundException {
-     
-            InetAddress addr = InetAddress.getLocalHost();
-            Socket socket = new Socket(addr, 9999);
-            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-            oos.writeObject(request); //an server schicken und lesen
-            Player p = (Player) ois.readObject();
-            
-            
-            oos.close();
-            ois.close();
-            socket.close();
-            return p;
-             }
-            
-           
+
+
+    public Player sendRequest(Object request) throws IOException, ClassNotFoundException {
+
+        InetAddress addr = InetAddress.getLocalHost();
+        Socket socket = new Socket(addr, 9999);
+        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+        oos.writeObject(request); //an server schicken und lesen
+        Player p = (Player) ois.readObject();
+
+        oos.close();
+        ois.close();
+        socket.close();
+        return p;
+    }
+
 }
