@@ -124,7 +124,7 @@ public class ArcomageGUI extends Application{
                 case 2: type = "green"; break;
             }
             try {
-                card[j] = new Image(new FileInputStream(path + type + ".jpg"));
+                card[j] = new Image(new FileInputStream(path + type + ".png"));
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -135,14 +135,14 @@ public class ArcomageGUI extends Application{
         healthWall[1] = p.getWall();
         resources[0] = p.getBricks();
         resources[3] = p.getBricks2();
-        resources[1] = p.getMagic();
-        resources[4] = p.getMagic2();
+        resources[1] = p.getGems();
+        resources[4] = p.getGems2();
         resources[2] = p.getBeasts();
         resources[5] = p.getBeasts2();
         changes[0] = p.getQuarry();
         changes[3] = p.getQuarry2();
-        changes[1] = p.getGems();
-        changes[4] = p.getGems2();
+        changes[1] = p.getMagic();
+        changes[4] = p.getMagic2();
         changes[2] = p.getBestiary();
         changes[5] = p.getBestiary2();
     }
@@ -395,7 +395,7 @@ public class ArcomageGUI extends Application{
                     selGc.setFont(text);
                     selGc.fillText(p.getHand()[j].getName(), selCard[j].getX() + 15, selCard[j].getY() + 33, selCard[0].getWidth() - 30);
                     selGc.setFont(desc);
-                    String[] splits = p.getHand()[j].getDescription().split("/n");
+                    String[] splits = p.getHand()[j].getDescription().split("_n");
                     int dist = 165;
                     for (String split : splits) {
                         System.out.println(split);
