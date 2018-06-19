@@ -1,8 +1,0 @@
-<RCC>
-  <qresource prefix="Launcher">
-    <file>Resources/img_cc.png</file>
-    <file>Resources/background.jpg</file>
-    <file>Resources/img_gpl.png</file>
-    <file>Resources/logo.png</file>
-  </qresource>
-</RCC>

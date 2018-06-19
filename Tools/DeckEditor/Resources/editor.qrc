@@ -1,9 +1,0 @@
-<RCC>
-  <qresource prefix="Headers">
-    <file>Images/splash.png</file>
-    <file>Images/selection.png</file>
-  </qresource>
-  <qresource prefix="HTML">
-    <file>license.html</file>
-  </qresource>
-</RCC>
