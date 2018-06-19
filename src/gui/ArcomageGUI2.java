@@ -95,9 +95,9 @@ public class ArcomageGUI2 extends Application{
         try {
            actplayer(c.sendRequest(playernr));
         } catch (IOException ex) {
-            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
         }
          ct = new ArcomageGUI2.ClientThread();
          ct.start();
@@ -125,7 +125,7 @@ public class ArcomageGUI2 extends Application{
             try {
                 card[j] = new Image(new FileInputStream(path + type + ".png"));
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         healthTower[0] = p.getTower();
@@ -161,9 +161,9 @@ public class ArcomageGUI2 extends Application{
                 try {
                     p = c.sendRequest(playernr);
                 } catch (IOException ex) {
-                    Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     actplayer(p);
                     //System.out.println(p.getPlayernr());
@@ -224,6 +224,9 @@ public class ArcomageGUI2 extends Application{
             card[j] = new Image(new FileInputStream(path + "red.png"));
             selCard[j] = new Rectangle((int)x[j], (int)y[j], (int)card[j].getWidth(), (int)card[j].getHeight());
             template[j] = new Image(new FileInputStream(path + "1.png"));
+            
+            //template[j] = new Image(new FileInputStream(path + p.getHand()[j].getCard_id() + ".png")); vl hilft des
+            
             x[j] = (canvasSize[0] - card[j].getWidth()) / 5 * j;
             y[j] = canvasSize[1] - card[j].getHeight();
         }
@@ -397,7 +400,7 @@ public class ArcomageGUI2 extends Application{
                     String[] splits = p.getHand()[j].getDescription().split("_n");
                     int dist = 165;
                     for (String split : splits) {
-                        System.out.println(split);
+                        //System.out.println(split);
                         selGc.fillText(split, selCard[j].getX() + 13, selCard[j].getY() + dist, selCard[0].getWidth() - 26);
                         dist += 14;
                     }
@@ -489,9 +492,9 @@ public class ArcomageGUI2 extends Application{
         try {
             c.sendRequest(new Playercard(location, playernr));
         } catch (IOException ex) {
-            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -500,9 +503,9 @@ public class ArcomageGUI2 extends Application{
         try {
             c.sendRequest(new Playercard(location, playernr));
         } catch (IOException ex) {
-            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ArcomageGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArcomageGUI2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
