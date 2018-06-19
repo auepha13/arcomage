@@ -64,7 +64,6 @@ public class ArcomageGUI extends Application{
     private static Image discarded;
     private int selectedCard = -1;
     private TranslateTransition tt;
-    public static Stage classStage = new Stage();
     
     
     
@@ -86,11 +85,11 @@ public class ArcomageGUI extends Application{
     
     
     
-    public ArcomageGUI(int nr)
+    public ArcomageGUI()
     {
 //        Application.launch(ArcomageGUI.class, "");
         
-        setplayernr(nr);
+        setplayernr(1);
         
         
         c= new ArcoClient();
@@ -201,8 +200,6 @@ public class ArcomageGUI extends Application{
         Font desc = Font.loadFont(getClass().getResourceAsStream("/fonts/Archtura.ttf"), 12);
         Font numberTiny = Font.loadFont(getClass().getResourceAsStream("/fonts/Kingthings_Exeter.ttf"), 22);
         Font numberLarge = Font.loadFont(getClass().getResourceAsStream("/fonts/Kingthings_Exeter.ttf"), 66);
-        
-        classStage = stage;
         
         stage.setTitle("Arcomage");
         
