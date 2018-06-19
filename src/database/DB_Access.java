@@ -28,7 +28,7 @@ import javax.imageio.ImageIO;
 //Database access
 public class DB_Access {
 
-    // create DB_Access as Singleton
+
     private static DB_Access theInstance = null;
     private DB_ConnectionPool connections = DB_ConnectionPool.getInstance();
     private DB_StatementPool statementPool = DB_StatementPool.getInstance();
@@ -43,7 +43,12 @@ public class DB_Access {
     private DB_Access() {
     }
 
-    //Inserts the base information of a card
+    /**
+     * Inserts the base information of a card
+     * @param card
+     * @throws SQLException
+     * @throws InterruptedException 
+     */
     public void insertCard(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -70,7 +75,10 @@ public class DB_Access {
 
     }
 
-    //Fills the other 2 Tables
+    /**
+     * Fills the other 2 Tables
+     * @param card 
+     */
     public void insertVa(Card card) {
         try {
             insertChangesE(card);
@@ -85,7 +93,12 @@ public class DB_Access {
         }
     }
 
-    //inserts the Enemy Changes
+    /**
+     * inserts the Enemy Changes
+     * @param card
+     * @throws SQLException
+     * @throws InterruptedException 
+     */
     public void insertChangesE(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -107,7 +120,12 @@ public class DB_Access {
 
     }
 
-    //inserts the Player Changes
+    /**
+     * inserts the Player Changes
+     * @param card
+     * @throws SQLException
+     * @throws InterruptedException 
+     */
     public void insertChangesP(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -129,7 +147,13 @@ public class DB_Access {
 
     }
 
-    //inserts the Enemy Mod
+ 
+    /**
+     * inserts the Enemy mod
+     * @param card
+     * @throws SQLException
+     * @throws InterruptedException 
+     */
     public void insertModE(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -149,7 +173,13 @@ public class DB_Access {
 
     }
 
-    //inserts the Player Mod
+ 
+    /**
+     * inserts the Player Mod
+     * @param card
+     * @throws SQLException
+     * @throws InterruptedException 
+     */
     public void insertModP(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -169,7 +199,13 @@ public class DB_Access {
 
     }
 
-    //inserts the Card Picture
+  
+    /**
+     * inserts the Card Picture
+     * @param card
+     * @throws SQLException
+     * @throws InterruptedException 
+     */
     public void insertCardPicture(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -196,7 +232,14 @@ public class DB_Access {
 
     }
 
-    //Updates the Card with the correct foreign keys
+  
+    /**
+     * Updates the Card with the correct foreign keys
+     * @param card
+     * @throws SQLException
+     * @throws InterruptedException 
+     */
+    
     public void CardUpdate(Card card) throws SQLException, InterruptedException {
 
         try {
@@ -276,7 +319,13 @@ public class DB_Access {
 
     }
 
-    //return a random Card object
+    /**
+     * 
+     * @return random card object
+     * @throws SQLException
+     * @throws Exception 
+     */
+    
     public Card getRandomCard() throws SQLException, Exception {
 
         int cardcount = 0;
@@ -296,10 +345,18 @@ public class DB_Access {
 
         connections.releaseConnection(conn);
         return card;
+        
 
     }
 
-    //returns a specific Card object
+    /**
+     * 
+     * returns a specific Card object
+     * @param card_id uebergabe der card id
+     * @return the card object
+     * @throws SQLException
+     * @throws Exception 
+     */
     public Card getCard(int card_id) throws SQLException, Exception {
 
         Card card = null;
