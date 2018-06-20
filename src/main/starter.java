@@ -23,25 +23,9 @@ public class starter {
         ServerGUI server = new ServerGUI();
         server.setVisible(true);
         server.btstart();
-
-       
-        
         ArcomageGUI gui = new ArcomageGUI();
         Application.launch(ArcomageGUI.class, args);
         
-       
-        
-        
-        
-        
-//        ArcomageGUI gui = new ArcomageGUI(1);
-//        ArcomageGUI gui2 = new ArcomageGUI(2);
-//        try {
-//            gui.start(gui.classStage);
-//            gui2.start(gui2.classStage);
-//        } catch (Exception ex) {
-//            Logger.getLogger(starter.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
 }
